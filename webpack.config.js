@@ -26,7 +26,7 @@ var clientConfig = {
     //     vendor: ["react", "babel-polyfill", "socket.io-client"]
     // },
     output: {
-        path: path.resolve("build"),
+        path: path.resolve("dist"),
         filename: "[name].js?[hash:8]",
         chunkFilename: "chunk.[name].js?[chunkhash:8]"
     },

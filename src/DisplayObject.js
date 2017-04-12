@@ -8,9 +8,13 @@ export default class DisplayObject{
     get hashCode(){
         return this._hashCode;
     }
-    _element;
+    _element = this.renderElement();
     get element(){
         return this._element;
+    }
+    _elementChildren = this.renderElementChildren();
+    get elementChildren(){
+        return this._elementChildren;
     }
     _parent;
     get parent(){
@@ -20,14 +24,14 @@ export default class DisplayObject{
     get children(){
         return this._children;
     }
-
-    get tagName(){
-        return 'div';
-    }
     
     constructor(){
-        this._createElement();
+
     }
+    querySelector(selector){
+        return this.element.querySelector(selector);
+    }
+
     getChildIndex(child){
         return this._children.indexOf(child);
     }
@@ -47,7 +51,7 @@ export default class DisplayObject{
             index = this._children.length + index + 1;
         }
         if(index >= 0 || index <= this._children.length){
-            this._element.appendChild(child._element);
+            this.elementChildren.appendChild(child.element);
             child._parent = this;
             this._children.splice(index, 0, child);
             child._onAdded();
@@ -66,7 +70,7 @@ export default class DisplayObject{
         }
         if(index >= 0 && index <= this._children.length - 1){
             let child = this._children[index];
-            this._element.removeChild(child._element);
+            this.elementChildren.removeChild(child.element);
             child._parent = null;
             this._children.splice(index, 1);
             child._onRemoved();
@@ -86,12 +90,6 @@ export default class DisplayObject{
             this.removeChildAt(i);
         }
     }
-    get classList(){
-        return this._element.classList;
-    }
-    get style(){
-        return this._element.style;
-    }
     removeFromContainer(){
         this.parent && this.parent.removeChild(this);
     }
@@ -99,12 +97,12 @@ export default class DisplayObject{
         return child == this || child.parent == this || this.children.some((item)=>item.contains(child));
     }
     dangerouslySetInnerHTML(innerHTML){
-        this._element.innerHTML = innerHTML;
+        this.elementChildren.innerHTML = innerHTML;
     }
-    _createElement(){
-        this._element = document.createElement(this.tagName);
-        process.env.NODE_ENV == 'development' && this._element.setAttribute('data-lomo-id', this.hashCode);
-    }
+    // _createElement(){
+    //     this._element = this.render();
+    //     process.env.NODE_ENV == 'development' && this.element.setAttribute('data-lomo-id', this.hashCode);
+    // }
     _onAdded(){
         // fixme
         // this.dispatchEvent('addedToStage');
@@ -118,5 +116,11 @@ export default class DisplayObject{
     }
     removeEventListener(...args){
         this.element.removeEventListener(...args);
+    }
+    renderElement(){
+        return this.elementChildren;
+    }
+    renderElementChildren(){
+        return <div/>;
     }
 }
