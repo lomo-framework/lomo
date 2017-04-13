@@ -17,7 +17,7 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-app.use(/*require('compression')(), */express.static(path.join(__dirname, 'build/')));
+app.use(/*require('compression')(), */express.static(path.join(__dirname, 'dist/')));
 // app.get('/', function(req, res) {
 //     res.sendFile(__dirname + 'build/index.html');
 // });
