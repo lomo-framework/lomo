@@ -33,18 +33,18 @@ export default class TestMain extends DisplayContainer{
         var img2 = new Image();
         img2.src = 'https://4.bp.blogspot.com/-QxIjKSiGWZU/Vi2iKa-D15I/AAAAAAAGqoo/D-0_NT3zkGo/s1600/%25E6%259D%25BE%25E6%259C%25AC%2B%25E6%25BD%25AE%25E9%2587%258C%2528Shiori%2BMatsumoto%2529-www.kaifineart.com-12.jpg';
         ui2.addChild(img2);
-
-        var btn = new Button();
-        btn.label = '测试按钮';
-        this.addChild(btn);
         
         let svg = new TestSVG();
         this.addChild(svg);
-        
+
+        var btn = new Button();
+        btn.label = '测试按钮';
+        this.addChildAt(btn, 0);
+
         btn.on('click', (event)=>{
             console.log(123, event);
             // ui2.removeChildAt(-1);
-            TweenLite.to(ui2.element, 2, {backgroundColor:"#"+Math.random().toString(16).substr(2, 6), width:"500px", ease:Power2.easeInOut});
+            TweenLite.to(ui2.element, 0.5, {backgroundColor:"#"+Math.random().toString(16).substr(2, 6), width:500*Math.random()+100, ease:Power2.easeInOut});
             TweenLite.to(tf1.element, 1, {text:"This is the new text"});
         });
         

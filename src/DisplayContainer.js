@@ -37,7 +37,7 @@ export default class DisplayContainer extends DisplayObject{
             index = this.children.length + index + 1;
         }
         if(index >= 0 || index <= this.children.length){
-            this.childrenGroup.appendChild(child.element);
+            this.childrenGroup.appendChild(child.element); // fixme insertBefore
             child._parent = this;
             this.children.splice(index, 0, child);
             child.onAdded();
