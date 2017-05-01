@@ -1,0 +1,2638 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "src/Animation.js",
+    "content": "/**\n * 动画\n */\nimport createElement from './createElement';\nimport DisplayObject from './DisplayObject';\nexport default class Animation extends DisplayObject{\n    _src;\n    get src(){\n        return this._src;\n    }\n    set src(value){\n        this._src = value;\n        this._element.src = value;\n    }\n    render(){\n        return <canvas/>;// todo\n    }\n}",
+    "static": true,
+    "longname": "src/Animation.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "name": "Animation",
+    "memberof": "src/Animation.js",
+    "static": true,
+    "longname": "src/Animation.js~Animation",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/Animation.js",
+    "importStyle": "Animation",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/DisplayObject.js~DisplayObject"
+    ]
+  },
+  {
+    "__docId__": 2,
+    "kind": "member",
+    "name": "_src",
+    "memberof": "src/Animation.js~Animation",
+    "static": false,
+    "longname": "src/Animation.js~Animation#_src",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 3,
+    "kind": "get",
+    "name": "src",
+    "memberof": "src/Animation.js~Animation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Animation.js~Animation#src",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "set",
+    "name": "src",
+    "memberof": "src/Animation.js~Animation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Animation.js~Animation#src",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "member",
+    "name": "_src",
+    "memberof": "src/Animation.js~Animation",
+    "static": false,
+    "longname": "src/Animation.js~Animation#_src",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/Animation.js~Animation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Animation.js~Animation#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "file",
+    "name": "src/Button.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport createElement from './createElement';\nimport DisplayContainer from './DisplayContainer';\nexport default class Button extends DisplayContainer{\n    _label;\n    get label(){\n        return this._label;\n    }\n    set label(value){\n        this._label = value;\n        this.element.textContent = value;\n    }\n    // render(){\n    //     return (\n    //         <div className=\"button-test\">\n    //             <div className=\"button-text\">Button</div>\n    //             {this.elementChildren}\n    //         </div>\n    //     );\n    // }\n    render(){\n        return <button/>;\n    }\n}",
+    "static": true,
+    "longname": "src/Button.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 8,
+    "kind": "class",
+    "name": "Button",
+    "memberof": "src/Button.js",
+    "static": true,
+    "longname": "src/Button.js~Button",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/Button.js",
+    "importStyle": "Button",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/DisplayContainer.js~DisplayContainer"
+    ]
+  },
+  {
+    "__docId__": 9,
+    "kind": "member",
+    "name": "_label",
+    "memberof": "src/Button.js~Button",
+    "static": false,
+    "longname": "src/Button.js~Button#_label",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 10,
+    "kind": "get",
+    "name": "label",
+    "memberof": "src/Button.js~Button",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Button.js~Button#label",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 11,
+    "kind": "set",
+    "name": "label",
+    "memberof": "src/Button.js~Button",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Button.js~Button#label",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "member",
+    "name": "_label",
+    "memberof": "src/Button.js~Button",
+    "static": false,
+    "longname": "src/Button.js~Button#_label",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/Button.js~Button",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Button.js~Button#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 14,
+    "kind": "file",
+    "name": "src/DisplayContainer.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport warning from 'warning';\nimport createElement from './createElement';\nimport DisplayObject from './DisplayObject';\nexport default class DisplayContainer extends DisplayObject{\n    _childrenGroup;\n    get childrenGroup(){\n        return this._childrenGroup;\n    }\n    _children = [];\n    get children(){\n        return this._children;\n    }\n\n    _createElement(){\n        this._childrenGroup = this.renderChildren();\n        super._createElement();\n    }\n    getChildIndex(child){\n        return this.children.indexOf(child);\n    }\n    getChildAt(index){\n        if(index <= -1){\n            index = this.children.length + index;\n        }\n        if(index >= 0 && index <= this.children.length - 1) {\n            return this.children[index];\n        }\n    }\n    addChild(child){\n        this.addChildAt(child, -1);\n    }\n    addChildAt(child, index){\n        if(index <= -1){\n            index = this.children.length + index + 1;\n        }\n        if(index >= 0 || index <= this.children.length){\n            this.childrenGroup.appendChild(child.element); // fixme insertBefore\n            child._parent = this;\n            this.children.splice(index, 0, child);\n            child.onAdded();\n            return child;\n        }else{\n            warning(false, `参数非法(index:${index})`);\n        }\n    }\n    removeChild(child){\n        let index = this.getChildIndex(child);\n        return this.removeChildAt(index);\n    }\n    removeChildAt(index){\n        if(index <= -1){\n            index = this.children.length + index;\n        }\n        if(index >= 0 && index <= this.children.length - 1){\n            let child = this.children[index];\n            this.childrenGroup.removeChild(child.element);\n            child._parent = null;\n            this.children.splice(index, 1);\n            child.onRemoved();\n            return child;\n        }else{\n            warning(false, `参数非法(index:${index})`);\n        }\n    }\n    removeChildren(startIndex=0, endIndex=-1){\n        if(startIndex <= -1){\n            startIndex = this.children.length + startIndex;\n        }\n        if(endIndex <= -1){\n            endIndex = this.children.length + endIndex;\n        }\n        for (let i = startIndex; i <= endIndex; i++) {\n            this.removeChildAt(i);\n        }\n    }\n    contains(child){\n        return child == this || child.parent == this || this.children.some((item)=>item.contains(child));\n    }\n    render(){\n        return this.childrenGroup;\n    }\n    renderChildren(){\n        return <div/>;\n    }\n}",
+    "static": true,
+    "longname": "src/DisplayContainer.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 15,
+    "kind": "class",
+    "name": "DisplayContainer",
+    "memberof": "src/DisplayContainer.js",
+    "static": true,
+    "longname": "src/DisplayContainer.js~DisplayContainer",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/DisplayContainer.js",
+    "importStyle": "DisplayContainer",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/DisplayObject.js~DisplayObject"
+    ]
+  },
+  {
+    "__docId__": 16,
+    "kind": "member",
+    "name": "_childrenGroup",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#_childrenGroup",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 17,
+    "kind": "get",
+    "name": "childrenGroup",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#childrenGroup",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 18,
+    "kind": "member",
+    "name": "_children",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#_children",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 19,
+    "kind": "get",
+    "name": "children",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#children",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 20,
+    "kind": "method",
+    "name": "_createElement",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#_createElement",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 21,
+    "kind": "member",
+    "name": "_childrenGroup",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#_childrenGroup",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "name": "getChildIndex",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#getChildIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "child",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 23,
+    "kind": "method",
+    "name": "getChildAt",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#getChildAt",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 24,
+    "kind": "method",
+    "name": "addChild",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#addChild",
+    "access": null,
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "child",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 25,
+    "kind": "method",
+    "name": "addChildAt",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#addChildAt",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "child",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 26,
+    "kind": "method",
+    "name": "removeChild",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#removeChild",
+    "access": null,
+    "description": null,
+    "lineNumber": 49,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "child",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 27,
+    "kind": "method",
+    "name": "removeChildAt",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#removeChildAt",
+    "access": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 28,
+    "kind": "method",
+    "name": "removeChildren",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#removeChildren",
+    "access": null,
+    "description": null,
+    "lineNumber": 68,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "startIndex",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 0,
+        "defaultValue": "0"
+      },
+      {
+        "name": "endIndex",
+        "optional": true,
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 29,
+    "kind": "method",
+    "name": "contains",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#contains",
+    "access": null,
+    "description": null,
+    "lineNumber": 79,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "child",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 82,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 31,
+    "kind": "method",
+    "name": "renderChildren",
+    "memberof": "src/DisplayContainer.js~DisplayContainer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayContainer.js~DisplayContainer#renderChildren",
+    "access": null,
+    "description": null,
+    "lineNumber": 85,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 32,
+    "kind": "file",
+    "name": "src/DisplayObject.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport warning from 'warning';\nimport createElement from './createElement';\nlet hashCode = 0;\nexport default class DisplayObject{\n    _hashCode = hashCode ++;\n    get hashCode(){\n        return this._hashCode;\n    }\n    _element;\n    get element(){\n        return this._element;\n    }\n    _parent;\n    get parent(){\n        return this._parent;\n    }\n    \n    constructor(){\n        this._createElement();\n    }\n    _createElement(){\n        this._element = this.render();\n    }\n    querySelector(selector){\n        return this.element.querySelector(selector);\n    }\n    \n    removeFromContainer(){\n        this.parent && this.parent.removeChild(this);\n    }\n    dangerouslySetInnerHTML(innerHTML){\n        this.elementChildren.innerHTML = innerHTML;\n    }\n    onAdded(){\n        // fixme\n        // this.dispatchEvent('addedToStage');\n    }\n    onRemoved(){\n        // fixme\n        // this.dispatchEvent('removedFromStage');\n    }\n    on(...args){\n        this.element.addEventListener(...args);\n    }\n    off(...args){\n        this.element.removeEventListener(...args);\n    }\n    get style(){\n        return this.element.style;\n    }\n    get classList(){\n        return this.element.classList;\n    }\n    setClass(className){\n        this.element.className = className;\n    }\n    addClass(className){\n        this.element.classList.add(className);\n    }\n    removeClass(className){\n        this.element.classList.remove(className);\n    }\n    setStyle(styleName, value){\n        if(typeof styleName == 'string'){\n            this.element.style[styleName] = value;\n        }else if(typeof styleName == 'object'){\n            for(let name in styleName){\n                if(styleName.hasOwnProperty(name)) {\n                    this.element.style[name] = value;\n                }\n            }\n        }\n    }\n    render(){\n        return <div/>;\n    }\n}",
+    "static": true,
+    "longname": "src/DisplayObject.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 33,
+    "kind": "variable",
+    "name": "hashCode",
+    "memberof": "src/DisplayObject.js",
+    "static": true,
+    "longname": "src/DisplayObject.js~hashCode",
+    "access": null,
+    "export": false,
+    "importPath": "lomo/src/DisplayObject.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 34,
+    "kind": "class",
+    "name": "DisplayObject",
+    "memberof": "src/DisplayObject.js",
+    "static": true,
+    "longname": "src/DisplayObject.js~DisplayObject",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/DisplayObject.js",
+    "importStyle": "DisplayObject",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 35,
+    "kind": "member",
+    "name": "_hashCode",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#_hashCode",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 36,
+    "kind": "get",
+    "name": "hashCode",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#hashCode",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 37,
+    "kind": "member",
+    "name": "_element",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#_element",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 38,
+    "kind": "get",
+    "name": "element",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#element",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 39,
+    "kind": "member",
+    "name": "_parent",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#_parent",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 40,
+    "kind": "get",
+    "name": "parent",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#parent",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 41,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 42,
+    "kind": "method",
+    "name": "_createElement",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#_createElement",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 43,
+    "kind": "member",
+    "name": "_element",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#_element",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 44,
+    "kind": "method",
+    "name": "querySelector",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#querySelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 27,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "selector",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 45,
+    "kind": "method",
+    "name": "removeFromContainer",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#removeFromContainer",
+    "access": null,
+    "description": null,
+    "lineNumber": 31,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 46,
+    "kind": "member",
+    "name": "parent",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#parent",
+    "access": null,
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "method",
+    "name": "dangerouslySetInnerHTML",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#dangerouslySetInnerHTML",
+    "access": null,
+    "description": null,
+    "lineNumber": 34,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "innerHTML",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 48,
+    "kind": "method",
+    "name": "onAdded",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#onAdded",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 49,
+    "kind": "method",
+    "name": "onRemoved",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#onRemoved",
+    "access": null,
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 50,
+    "kind": "method",
+    "name": "on",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#on",
+    "access": null,
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "args",
+        "types": [
+          "...*"
+        ],
+        "spread": true
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "method",
+    "name": "off",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#off",
+    "access": null,
+    "description": null,
+    "lineNumber": 48,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "args",
+        "types": [
+          "...*"
+        ],
+        "spread": true
+      }
+    ]
+  },
+  {
+    "__docId__": 52,
+    "kind": "get",
+    "name": "style",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#style",
+    "access": null,
+    "description": null,
+    "lineNumber": 51,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "get",
+    "name": "classList",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#classList",
+    "access": null,
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "setClass",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#setClass",
+    "access": null,
+    "description": null,
+    "lineNumber": 57,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "className",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "name": "addClass",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#addClass",
+    "access": null,
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "className",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "removeClass",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#removeClass",
+    "access": null,
+    "description": null,
+    "lineNumber": 63,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "className",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "setStyle",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#setStyle",
+    "access": null,
+    "description": null,
+    "lineNumber": 66,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "styleName",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/DisplayObject.js~DisplayObject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DisplayObject.js~DisplayObject#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 77,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "file",
+    "name": "src/Image.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport createElement from './createElement';\nimport DisplayObject from './DisplayObject';\nexport default class Image extends DisplayObject{\n    _src;\n    get src(){\n        return this._src;\n    }\n    set src(value){\n        this._src = value;\n        this._element.src = value;\n    }\n    render(){\n        return <img/>;\n    }\n}",
+    "static": true,
+    "longname": "src/Image.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 60,
+    "kind": "class",
+    "name": "Image",
+    "memberof": "src/Image.js",
+    "static": true,
+    "longname": "src/Image.js~Image",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/Image.js",
+    "importStyle": "Image",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/DisplayObject.js~DisplayObject"
+    ]
+  },
+  {
+    "__docId__": 61,
+    "kind": "member",
+    "name": "_src",
+    "memberof": "src/Image.js~Image",
+    "static": false,
+    "longname": "src/Image.js~Image#_src",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "get",
+    "name": "src",
+    "memberof": "src/Image.js~Image",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Image.js~Image#src",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "set",
+    "name": "src",
+    "memberof": "src/Image.js~Image",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Image.js~Image#src",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "member",
+    "name": "_src",
+    "memberof": "src/Image.js~Image",
+    "static": false,
+    "longname": "src/Image.js~Image#_src",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/Image.js~Image",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Image.js~Image#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "file",
+    "name": "src/TextField.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport createElement from './createElement';\nimport DisplayObject from './DisplayObject';\nexport default class TextField extends DisplayObject{\n    _text;\n    get text(){\n        return this._text;\n    }\n    set text(value){\n        this._text = value;\n        this._element.textContent = value;\n    }\n    renderElementChildren(){\n        return <p/>;\n    }\n}",
+    "static": true,
+    "longname": "src/TextField.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 67,
+    "kind": "class",
+    "name": "TextField",
+    "memberof": "src/TextField.js",
+    "static": true,
+    "longname": "src/TextField.js~TextField",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/TextField.js",
+    "importStyle": "TextField",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/DisplayObject.js~DisplayObject"
+    ]
+  },
+  {
+    "__docId__": 68,
+    "kind": "member",
+    "name": "_text",
+    "memberof": "src/TextField.js~TextField",
+    "static": false,
+    "longname": "src/TextField.js~TextField#_text",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "get",
+    "name": "text",
+    "memberof": "src/TextField.js~TextField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/TextField.js~TextField#text",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "set",
+    "name": "text",
+    "memberof": "src/TextField.js~TextField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/TextField.js~TextField#text",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "member",
+    "name": "_text",
+    "memberof": "src/TextField.js~TextField",
+    "static": false,
+    "longname": "src/TextField.js~TextField#_text",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "name": "renderElementChildren",
+    "memberof": "src/TextField.js~TextField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/TextField.js~TextField#renderElementChildren",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/createElement.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport assign from 'object-assign';\nconst DOMNamespaces = {\n    html: 'http://www.w3.org/1999/xhtml',\n    mathml: 'http://www.w3.org/1998/Math/MathML',\n    svg: 'http://www.w3.org/2000/svg'\n};\n\nconst namespaceURIMap = {\n    // SVG\n    circle: DOMNamespaces.svg,\n    clipPath: DOMNamespaces.svg,\n    defs: DOMNamespaces.svg,\n    ellipse: DOMNamespaces.svg,\n    g: DOMNamespaces.svg,\n    image: DOMNamespaces.svg,\n    line: DOMNamespaces.svg,\n    linearGradient: DOMNamespaces.svg,\n    mask: DOMNamespaces.svg,\n    path: DOMNamespaces.svg,\n    pattern: DOMNamespaces.svg,\n    polygon: DOMNamespaces.svg,\n    polyline: DOMNamespaces.svg,\n    radialGradient: DOMNamespaces.svg,\n    rect: DOMNamespaces.svg,\n    stop: DOMNamespaces.svg,\n    svg: DOMNamespaces.svg,\n    text: DOMNamespaces.svg,\n    tspan: DOMNamespaces.svg,\n    // MATH\n    math: DOMNamespaces.mathml\n};\nexport default function (type, props, children, ...othersChildren) {\n    if(typeof type == 'string'){\n        let element;\n        let namespaceURI = namespaceURIMap[type];\n        if(namespaceURI){\n            element = document.createElementNS(namespaceURI, type);\n        }else{\n            element = document.createElement(type);\n        }\n        if(props){\n            let {style, className, ...others} = props;\n            style && assign(element.style, style);\n            className && (element.className = className);\n            for (var name in others) {\n                if(others.hasOwnProperty(name)) {\n                    element.setAttribute(name, others[name]);\n                }\n            }\n        }\n        if(children){\n            if(Array.isArray(children)){\n                children = children.concat(othersChildren);\n            }else{\n                children = [children].concat(othersChildren);\n            }\n        }\n        if(children){\n            if(Array.isArray(children)){\n                children.forEach((child)=>{\n                    element.appendChild(child);\n                });\n            }else{\n                element.appendChild(children);\n            }\n        }\n        return element;\n    }else{\n        let instance = new type();\n        return instance.element;\n    }\n};",
+    "static": true,
+    "longname": "src/createElement.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "variable",
+    "name": "DOMNamespaces",
+    "memberof": "src/createElement.js",
+    "static": true,
+    "longname": "src/createElement.js~DOMNamespaces",
+    "access": null,
+    "export": false,
+    "importPath": "lomo/src/createElement.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"html\": string, \"mathml\": string, \"svg\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "variable",
+    "name": "namespaceURIMap",
+    "memberof": "src/createElement.js",
+    "static": true,
+    "longname": "src/createElement.js~namespaceURIMap",
+    "access": null,
+    "export": false,
+    "importPath": "lomo/src/createElement.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"circle\": *, \"clipPath\": *, \"defs\": *, \"ellipse\": *, \"g\": *, \"image\": *, \"line\": *, \"linearGradient\": *, \"mask\": *, \"path\": *, \"pattern\": *, \"polygon\": *, \"polyline\": *, \"radialGradient\": *, \"rect\": *, \"stop\": *, \"svg\": *, \"text\": *, \"tspan\": *, \"math\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "function",
+    "name": "createElement",
+    "memberof": "src/createElement.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/createElement.js~createElement",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/createElement.js",
+    "importStyle": "createElement",
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "type",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "children",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "othersChildren",
+        "types": [
+          "...*"
+        ],
+        "spread": true
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport DisplayObject from './DisplayObject';\nimport DisplayContainer from './DisplayContainer';\nimport startup from './startup';\nimport Image from './Image';\nimport TextField from './TextField';\nimport Button from './Button';\nimport createElement from './createElement';\n\nimport assign from 'object-assign';\n\nassign(startup, {\n    DisplayObject,\n    DisplayContainer,\n    Image,\n    TextField,\n    Button,\n    createElement\n});\nmodule.exports = startup;",
+    "static": true,
+    "longname": "src/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 78,
+    "kind": "file",
+    "name": "src/startup.js",
+    "content": "/**\n * Created by vincent on 17/3/11.\n */\nimport DisplayObject from './DisplayObject';\n\nexport default function (element, RootClass) {\n    let rootInstance = new RootClass();\n    rootInstance._parent = rootInstance;\n    element.appendChild(rootInstance.element);\n}",
+    "static": true,
+    "longname": "src/startup.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 79,
+    "kind": "function",
+    "name": "startup",
+    "memberof": "src/startup.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/startup.js~startup",
+    "access": null,
+    "export": true,
+    "importPath": "lomo/src/startup.js",
+    "importStyle": "startup",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "element",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "RootClass",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 81,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 82,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 83,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 84,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 85,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 86,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 87,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 88,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 89,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 90,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 91,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 93,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 94,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 100,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 101,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 102,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 103,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 104,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 105,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 106,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 107,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 108,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 109,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 110,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 111,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 112,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 113,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 114,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 115,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 121,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 122,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 123,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 124,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 125,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 126,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 127,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "lineNumber": 193,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 129,
+    "kind": "external",
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 130,
+    "kind": "external",
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 131,
+    "kind": "external",
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 132,
+    "kind": "external",
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 133,
+    "kind": "external",
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 134,
+    "kind": "external",
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 135,
+    "kind": "external",
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 136,
+    "kind": "external",
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "lineNumber": 34,
+    "builtinExternal": true
+  }
+]

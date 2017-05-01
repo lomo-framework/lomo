@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/DisplayContainer.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Animation.js~Animation.html">Animation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Button.js~Button.html">Button</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/DisplayContainer.js~DisplayContainer.html">DisplayContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/DisplayObject.js~DisplayObject.html">DisplayObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Image.js~Image.html">Image</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TextField.js~TextField.html">TextField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-startup">startup</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/DisplayContainer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Created by vincent on 17/3/11.
+ */
+import warning from &apos;warning&apos;;
+import createElement from &apos;./createElement&apos;;
+import DisplayObject from &apos;./DisplayObject&apos;;
+export default class DisplayContainer extends DisplayObject{
+    _childrenGroup;
+    get childrenGroup(){
+        return this._childrenGroup;
+    }
+    _children = [];
+    get children(){
+        return this._children;
+    }
+
+    _createElement(){
+        this._childrenGroup = this.renderChildren();
+        super._createElement();
+    }
+    getChildIndex(child){
+        return this.children.indexOf(child);
+    }
+    getChildAt(index){
+        if(index &lt;= -1){
+            index = this.children.length + index;
+        }
+        if(index &gt;= 0 &amp;&amp; index &lt;= this.children.length - 1) {
+            return this.children[index];
+        }
+    }
+    addChild(child){
+        this.addChildAt(child, -1);
+    }
+    addChildAt(child, index){
+        if(index &lt;= -1){
+            index = this.children.length + index + 1;
+        }
+        if(index &gt;= 0 || index &lt;= this.children.length){
+            this.childrenGroup.appendChild(child.element); // fixme insertBefore
+            child._parent = this;
+            this.children.splice(index, 0, child);
+            child.onAdded();
+            return child;
+        }else{
+            warning(false, `&#x53C2;&#x6570;&#x975E;&#x6CD5;(index:${index})`);
+        }
+    }
+    removeChild(child){
+        let index = this.getChildIndex(child);
+        return this.removeChildAt(index);
+    }
+    removeChildAt(index){
+        if(index &lt;= -1){
+            index = this.children.length + index;
+        }
+        if(index &gt;= 0 &amp;&amp; index &lt;= this.children.length - 1){
+            let child = this.children[index];
+            this.childrenGroup.removeChild(child.element);
+            child._parent = null;
+            this.children.splice(index, 1);
+            child.onRemoved();
+            return child;
+        }else{
+            warning(false, `&#x53C2;&#x6570;&#x975E;&#x6CD5;(index:${index})`);
+        }
+    }
+    removeChildren(startIndex=0, endIndex=-1){
+        if(startIndex &lt;= -1){
+            startIndex = this.children.length + startIndex;
+        }
+        if(endIndex &lt;= -1){
+            endIndex = this.children.length + endIndex;
+        }
+        for (let i = startIndex; i &lt;= endIndex; i++) {
+            this.removeChildAt(i);
+        }
+    }
+    contains(child){
+        return child == this || child.parent == this || this.children.some((item)=&gt;item.contains(child));
+    }
+    render(){
+        return this.childrenGroup;
+    }
+    renderChildren(){
+        return &lt;div/&gt;;
+    }
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

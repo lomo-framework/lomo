@@ -32,7 +32,7 @@ const namespaceURIMap = {
     // MATH
     math: DOMNamespaces.mathml
 };
-module.exports = function (type, props, children, ...othersChildren) {
+export default function (type, props, children, ...othersChildren) {
     if(typeof type == 'string'){
         let element;
         let namespaceURI = namespaceURIMap[type];
