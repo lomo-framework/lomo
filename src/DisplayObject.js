@@ -31,9 +31,6 @@ export default class DisplayObject{
     removeFromContainer(){
         this.parent && this.parent.removeChild(this);
     }
-    dangerouslySetInnerHTML(innerHTML){
-        this.elementChildren.innerHTML = innerHTML;
-    }
     onAdded(){
         // fixme
         // this.dispatchEvent('addedToStage');

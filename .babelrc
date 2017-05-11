@@ -1,11 +1,8 @@
 {
   "presets": [
     "es2015",
+    "lomo",
     "stage-0"
   ],
-  "plugins": ["transform-decorators-legacy",
-    ["transform-react-jsx", {
-      "pragma": "createElement"
-    }]
-  ]
+  "plugins": ["transform-decorators-legacy"]
 }

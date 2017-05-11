@@ -37,7 +37,11 @@ export default class DisplayContainer extends DisplayObject{
             index = this.children.length + index + 1;
         }
         if(index >= 0 || index <= this.children.length){
-            this.childrenGroup.appendChild(child.element); // fixme insertBefore
+            if(index == this.children.length){
+                this.childrenGroup.appendChild(child.element);
+            }else{
+                this.childrenGroup.insertBefore(child.element, this.childrenGroup.childNodes[index]);
+            }
             child._parent = this;
             this.children.splice(index, 0, child);
             child.onAdded();
@@ -75,6 +79,12 @@ export default class DisplayContainer extends DisplayObject{
         for (let i = startIndex; i <= endIndex; i++) {
             this.removeChildAt(i);
         }
+    }
+    dangerouslySetInnerHTML(innerHTML){
+        let children = this.children.concat();
+        this.children.length = 0;
+        children.forEach((child)=>child.onRemoved());
+        this.childrenGroup.innerHTML = innerHTML;
     }
     contains(child){
         return child == this || child.parent == this || this.children.some((item)=>item.contains(child));

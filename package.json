@@ -20,6 +20,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-polyfill": "^6.7.4",
     "babel-preset-es2015": "^6.9.0",
+    "babel-preset-lomo": "^1.0.1",
     "babel-preset-stage-0": "^6.5.0",
     "bundle-loader": "^0.5.4",
     "compression": "^1.6.2",
@@ -45,7 +46,6 @@
     "webpack-hot-middleware": "^2.13.2"
   },
   "dependencies": {
-    "babel-plugin-transform-react-jsx": "^6.24.1",
     "gsap": "^1.19.1",
     "object-assign": "^4.1.1",
     "warning": "^3.0.0"
