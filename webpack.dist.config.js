@@ -1,6 +1,7 @@
 var webpack = require("webpack");
 var HTMLWebpackPlugin = require("html-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var path = require("path");
 
 // args
@@ -26,6 +27,7 @@ var config = {
         filename: "lomo.js",
     },
     plugins: [
+        new BundleAnalyzerPlugin()
         // new webpack.DefinePlugin({
         //     'process.env': {
         //         NODE_ENV: "'" + process.env.NODE_ENV + "'",
