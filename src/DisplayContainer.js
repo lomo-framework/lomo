@@ -13,7 +13,10 @@ export default class DisplayContainer extends DisplayObject{
     get children(){
         return this._children;
     }
-
+    create(){
+        this._childrenGroup = this.renderChildren();
+        super.create();
+    }
     beforeCreate(){
         this._childrenGroup = this.renderChildren();
     }
@@ -51,7 +54,8 @@ export default class DisplayContainer extends DisplayObject{
     }
     removeChild(child){
         let index = this.getChildIndex(child);
-        return this.removeChildAt(index);
+        if(index != -1)
+            return this.removeChildAt(index);
     }
     removeChildAt(index){
         if(index <= -1){
@@ -92,6 +96,6 @@ export default class DisplayContainer extends DisplayObject{
         return this.childrenGroup;
     }
     renderChildren(){
-        return <div/>;
+        return <div {...this.props}/>;
     }
 }

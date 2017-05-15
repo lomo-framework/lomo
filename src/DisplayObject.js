@@ -5,6 +5,7 @@ import Signal from 'signals';
 import warning from 'warning';
 import createElement from './createElement';
 let hashCode = 0;
+
 export default class DisplayObject{
     _signal;
     get signal(){
@@ -33,8 +34,11 @@ export default class DisplayObject{
         this._props = props || {};
         this._hashCode = hashCode ++;
         this.beforeCreate();
-        this._element = this.render();
+        this.create();
         this.afterCreate();
+    }
+    create(){
+        this._element = this.render();
     }
     beforeCreate(){
 
