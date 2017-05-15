@@ -7,6 +7,7 @@ import startup from './startup';
 import Image from './Image';
 import TextField from './TextField';
 import Button from './Button';
+import Sprite from './Sprite';
 import createElement from './createElement';
 
 import assign from 'object-assign';
@@ -17,6 +18,7 @@ assign(startup, {
     Image,
     TextField,
     Button,
+    Sprite,
     createElement
 });
 module.exports = startup;

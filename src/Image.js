@@ -13,6 +13,6 @@ export default class Image extends DisplayObject{
         this._element.src = value;
     }
     render(){
-        return <img/>;
+        return <img {...this.props}/>;
     }
 }

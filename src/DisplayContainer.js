@@ -14,9 +14,8 @@ export default class DisplayContainer extends DisplayObject{
         return this._children;
     }
 
-    _createElement(){
+    beforeCreate(){
         this._childrenGroup = this.renderChildren();
-        super._createElement();
     }
     getChildIndex(child){
         return this.children.indexOf(child);

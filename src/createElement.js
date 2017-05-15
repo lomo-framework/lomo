@@ -72,4 +72,4 @@ export default function (type, props, children, ...othersChildren) {
         let instance = new type();
         return instance.element;
     }
-};
+}
