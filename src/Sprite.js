@@ -8,7 +8,10 @@ export default class Sprite extends DisplayObject{
     width;
     height;
 
-    afterCreate() {
+    onCreate() {
+        super.onCreate();
+
+
         this.context = this.element.getContext('2d');
         this.width = this.element.width;
         this.height = this.element.height;

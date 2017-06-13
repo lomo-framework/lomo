@@ -2,6 +2,7 @@
  * Created by vincent on 17/3/11.
  */
 import Signal from 'signals';
+import SignalType from './SignalType';
 import warning from 'warning';
 import createElement from './createElement';
 let hashCode = 0;
@@ -33,21 +34,17 @@ export default class DisplayObject{
     constructor(props){
         this._props = props || {};
         this._hashCode = hashCode ++;
-        this.beforeCreate();
-        this.create();
-        this.afterCreate();
+        this.$create();
     }
-    create(){
+    $create(){
         this._element = this.render();
+        this.onCreate();
     }
-    beforeCreate(){
-
-    }
-    afterCreate(){
-
+    onCreate(){
+        this.signal.dispatch(SignalType.CREATE);
     }
     onDestory(){
-
+        this.signal.dispatch(SignalType.DESTORY);
     }
     querySelector(selector){
         return this.element.querySelector(selector);
@@ -57,10 +54,10 @@ export default class DisplayObject{
         this.parent && this.parent.removeChild(this);
     }
     onAdded(){
-        this.signal.dispatch('addedToStage');
+        this.signal.dispatch(SignalType.ADDED_TO_STAGE);
     }
     onRemoved(){
-        this.signal.dispatch('removedFromStage');
+        this.signal.dispatch(SignalType.REMOVED_FROM_STAGE);
     }
     on(type, listener, useCapture){
         this.element.addEventListener(type, listener, useCapture);
@@ -76,20 +73,11 @@ export default class DisplayObject{
     off(type, listener, useCapture){
         this.element.removeEventListener(type, listener, useCapture);
     }
-    get style(){
+    getStyle(styleName){
+        if(typeof styleName == 'string'){
+            return this.element.style[styleName];
+        }
         return this.element.style;
-    }
-    get classList(){
-        return this.element.classList;
-    }
-    setClass(className){
-        this.element.className = className;
-    }
-    addClass(className){
-        this.element.classList.add(className);
-    }
-    removeClass(className){
-        this.element.classList.remove(className);
     }
     setStyle(styleName, value){
         if(typeof styleName == 'string'){
@@ -101,6 +89,12 @@ export default class DisplayObject{
                 }
             }
         }
+    }
+    getClassName(){
+        return this.element.className;
+    }
+    setClassName(className){
+        this.element.className = className;
     }
     render(){
         return <div {...this.props}/>;

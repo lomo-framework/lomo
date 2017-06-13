@@ -12,7 +12,7 @@ export default class TextField extends DisplayObject{
         this._text = value;
         this._element.textContent = value;
     }
-    renderElementChildren(){
+    render(){
         return <p/>;
     }
 }

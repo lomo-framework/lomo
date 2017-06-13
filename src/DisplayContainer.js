@@ -9,17 +9,16 @@ export default class DisplayContainer extends DisplayObject{
     get childrenGroup(){
         return this._childrenGroup;
     }
-    _children = [];
+    _children;
     get children(){
         return this._children;
     }
-    create(){
+    $create(){
+        this._children = [];
         this._childrenGroup = this.renderChildren();
-        super.create();
+        super.$create();
     }
-    beforeCreate(){
-        this._childrenGroup = this.renderChildren();
-    }
+
     getChildIndex(child){
         return this.children.indexOf(child);
     }
@@ -90,7 +89,7 @@ export default class DisplayContainer extends DisplayObject{
         this.childrenGroup.innerHTML = innerHTML;
     }
     contains(child){
-        return child == this || child.parent == this || this.children.some((item)=>item.contains(child));
+        return child == this || child.parent == this || this.children.some((item)=>item instanceof DisplayContainer && item.contains(child));
     }
     render(){
         return this.childrenGroup;
