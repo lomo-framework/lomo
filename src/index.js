@@ -2,21 +2,28 @@
  * Created by vincent on 17/3/11.
  */
 import DisplayObject from "./DisplayObject";
-import DisplayContainer from "./DisplayContainer";
 import Image from "./Image";
-import TextField from "./TextField";
+import Video from "./Video";
+import Text from "./Text";
+import DiaplayContainer from "./DiaplayContainer";
 import Button from "./Button";
 import Sprite from "./Sprite";
-import Application from "./Application";
+import Stage from "./Stage";
+import Animation from "./Animation";
+import Input from "./Input";
 import createElement from "./createElement";
 
+global.createElement = createElement;
 module.exports = {
-    Application,
-    DisplayObject,
-    DisplayContainer,
-    Image,
-    TextField,
-    Button,
-    Sprite,
-    createElement
+  Stage,
+  Animation,
+  DisplayObject,
+  DiaplayContainer,
+  Image,
+  Video,
+  Text,
+  Input,
+  Button,
+  Sprite,
+  createElement
 };
