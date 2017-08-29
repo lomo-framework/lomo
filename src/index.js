@@ -1,29 +1,34 @@
 /**
  * Created by vincent on 17/3/11.
  */
-import DisplayObject from "./DisplayObject";
-import Image from "./Image";
-import Video from "./Video";
-import Text from "./Text";
-import DiaplayContainer from "./DiaplayContainer";
-import Button from "./Button";
-import Sprite from "./Sprite";
-import Stage from "./Stage";
-import Animation from "./Animation";
-import Input from "./Input";
-import createElement from "./createElement";
+import DisplayObject from "./display/DisplayObject";
+import Image from "./display/Image";
+import Video from "./display/Video";
+import Text from "./display/Text";
+import DisplayContainer from "./display/DisplayContainer";
+import Button from "./display/Button";
+import Sprite from "./display/Sprite";
+import Stage from "./display/Stage";
+import Animation from "./display/Animation";
+import Input from "./display/Input";
+import createElement from "./utils/createElement";
+import Signal from "./utils/Signal";
 
 global.createElement = createElement;
 module.exports = {
+  // display
   Stage,
   Animation,
   DisplayObject,
-  DiaplayContainer,
+  DisplayContainer,
   Image,
   Video,
   Text,
   Input,
   Button,
   Sprite,
+
+  // utils
+  Signal,
   createElement
 };

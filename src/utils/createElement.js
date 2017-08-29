@@ -2,13 +2,13 @@
  * Created by vincent on 17/3/11.
  */
 import eachChildren from "./eachChildren";
-import DiaplayContainer from "./DiaplayContainer";
-import Text from "./Text";
-import Image from "./Image";
-import Button from "./Button";
-import Animation from "./Animation";
-import Sprite from "./Sprite";
-import Input from "./Input";
+import DisplayContainer from "../display/DisplayContainer";
+import Text from "../display/Text";
+import Image from "../display/Image";
+import Button from "../display/Button";
+import Animation from "../display/Animation";
+import Sprite from "../display/Sprite";
+import Input from "../display/Input";
 const DOMNamespaces = {
   html: 'http://www.w3.org/1999/xhtml',
   mathml: 'http://www.w3.org/1998/Math/MathML',
@@ -39,11 +39,10 @@ const namespaceURIMap = {
   // MATH
   math: DOMNamespaces.mathml
 };
-const DefaultDOMCreator = DiaplayContainer;
+const DefaultDOMCreator = DisplayContainer;
 const DOMCreators = {
-  div: DiaplayContainer,
-  container: DiaplayContainer,
-  view: DiaplayContainer,
+  div: DisplayContainer,
+  container: DisplayContainer,
 
   text: Text,
 
@@ -56,6 +55,7 @@ const DOMCreators = {
   animation: Animation,
 
   sprite: Sprite,
+
   canvas: Sprite
 };
 

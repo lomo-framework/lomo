@@ -3,7 +3,7 @@
  */
 import warning from "warning";
 import DisplayObject from "./DisplayObject";
-export default class DiaplayContainer extends DisplayObject{
+export default class DisplayContainer extends DisplayObject{
   _children;
   get children(){
     return this._children;

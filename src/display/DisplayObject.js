@@ -2,8 +2,8 @@
  * Created by vincent on 17/3/11.
  */
 import signals from "signals";
-import Signal from "./Signal";
-import createDOMNode from "./createDOMNode";
+import Signal from "../utils/Signal";
+import createDOMNode from "../utils/createDOMNode";
 let hashCode = 0;
 
 export default class DisplayObject{
