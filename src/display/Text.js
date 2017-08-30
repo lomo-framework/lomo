@@ -1,12 +1,24 @@
 /**
  * Created by vincent on 17/3/11.
  */
-import DisplayObject from './DisplayObject';
-import hoisting from '../utils/hoisting';
+import DisplayObject from "./DisplayObject";
 export default class Text extends DisplayObject{
-  constructor(props){
-    super('p', props);
+  get nodeType(){
+    return 'p';
+  }
+  get text(){
+    return this.element.textContent;
+  }
+  set text(value){
+    if(value !== void 0) {
+      this.element.textContent = value;
+    }
+  }
+  render(props){
+    let {text, ...others} = props || {};
 
-    hoisting(this, this.element, [['label', 'textContent']]);
+    super.render(others);
+
+    this.text = text;
   }
 }

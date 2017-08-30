@@ -31,25 +31,16 @@ const namespaceURIMap = {
   // MATH
   math: DOMNamespaces.mathml
 };
+const defaultNodeType = 'div';
 
-export default function (type, props) {
+export default function (type) {
   let element;
-  if(type == null){
-    element = document.createElement('div');
+  type = type || defaultNodeType;
+  let namespaceURI = namespaceURIMap[type];
+  if(namespaceURI){
+    element = document.createElementNS(namespaceURI, type);
   }else{
-    let namespaceURI = namespaceURIMap[type];
-    if(namespaceURI){
-      element = document.createElementNS(namespaceURI, type);
-    }else{
-      element = document.createElement(type);
-    }
-  }
-  if(props){
-    for (var name in props) {
-      if(props.hasOwnProperty(name)) {
-        element.setAttribute(name, props[name]);
-      }
-    }
+    element = document.createElement(type);
   }
   return element;
 }

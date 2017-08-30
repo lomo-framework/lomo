@@ -7,7 +7,10 @@ import createDOMNode from "../utils/createDOMNode";
 let hashCode = 0;
 
 export default class DisplayObject{
-  _DOMType;
+  _initialized;
+  get initialized(){
+    return this._inited;
+  }
   _signal;
   get signal(){
     if(!this._signal)
@@ -34,19 +37,52 @@ export default class DisplayObject{
   get stage(){
     return this.parent?this.parent.stage:null;
   }
-  constructor(DOMType, props){
-    this._hashCode = hashCode ++;
-    this._DOMType = DOMType;
-    this._props = props || {};
-    this.$create();
+  get nodeType(){
+    return null;
   }
-  $create(){
-    this._element = this.render();
-    this.onCreate();
+  constructor(props){
+    this._hashCode = hashCode ++;
+    this._props = props || {};
+
+    this.init();
+  }
+  init(){
+    if(!this.initialized){
+      this._initialized = true;
+
+      this.render(this.props);
+
+      this.onCreate();
+
+      // let DOMProps = this.setProps(this.props);
+      // this.$setDOMProps(DOMProps);
+
+      this.signal.dispatch(Signal.CREATE);
+    }
+  }
+  // setProps(props){
+  //   let {style, className, ...others} = props;
+  //   this.setStyle(style);
+  //   this.setClassName(className);
+  //   return others;
+  // }
+  $setDOMProps(props){
+    if(props){
+      for (var name in props) {
+        if(props.hasOwnProperty(name)) {
+          this.element.setAttribute(name, props[name]);
+        }
+      }
+    }
   }
   onCreate(){
-    this.signal.dispatch(Signal.CREATE);
+
   }
+  // $afterCreate(){
+  //   this.signal.dispatch(Signal.CREATE);
+  //   let DOMProps = this.setProps(this.props);
+  //   this.$setDOMProps(DOMProps);
+  // }
   onDestory(){
     this.signal.dispatch(Signal.DESTORY);
   }
@@ -84,19 +120,27 @@ export default class DisplayObject{
     return this.element.style;
   }
   setStyle(styleName, value){
-    if(typeof styleName == 'string'){
-      this.element.style[styleName] = value;
-    }else if(typeof styleName == 'object'){
-      Object.assign(this.element.style, styleName);
+    if(styleName !== void 0){
+      if(typeof styleName == 'string'){
+        this.element.style[styleName] = value;
+      }else if(typeof styleName == 'object'){
+        Object.assign(this.element.style, styleName);
+      }
     }
   }
   getClassName(){
     return this.element.className;
   }
   setClassName(className){
-    this.element.className = className;
+    if(className !== void 0){
+      this.element.className = className;
+    }
   }
-  render(){
-    return createDOMNode(this._DOMType, this.props);
+  render(props){
+    let {style, className, ...others} = props;
+    this._element = createDOMNode(this.nodeType);
+    this.setStyle(style);
+    this.setClassName(className);
+    this.$setDOMProps(others);
   }
 }
