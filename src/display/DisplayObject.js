@@ -7,10 +7,6 @@ import createDOMNode from "../utils/createDOMNode";
 let hashCode = 0;
 
 export default class DisplayObject{
-  _initialized;
-  get initialized(){
-    return this._inited;
-  }
   _signal;
   get signal(){
     if(!this._signal)
@@ -44,28 +40,13 @@ export default class DisplayObject{
     this._hashCode = hashCode ++;
     this._props = props || {};
 
-    this.init();
+    this.$initialize();
   }
-  init(){
-    if(!this.initialized){
-      this._initialized = true;
-
-      this.render(this.props);
-
-      this.onCreate();
-
-      // let DOMProps = this.setProps(this.props);
-      // this.$setDOMProps(DOMProps);
-
-      this.signal.dispatch(Signal.CREATE);
-    }
+  $initialize(){
+    this.render(this.props);
+    this.onCreate();
+    this.signal.dispatch(Signal.CREATE);
   }
-  // setProps(props){
-  //   let {style, className, ...others} = props;
-  //   this.setStyle(style);
-  //   this.setClassName(className);
-  //   return others;
-  // }
   $setDOMProps(props){
     if(props){
       for (var name in props) {
@@ -78,11 +59,6 @@ export default class DisplayObject{
   onCreate(){
 
   }
-  // $afterCreate(){
-  //   this.signal.dispatch(Signal.CREATE);
-  //   let DOMProps = this.setProps(this.props);
-  //   this.$setDOMProps(DOMProps);
-  // }
   onDestory(){
     this.signal.dispatch(Signal.DESTORY);
   }
