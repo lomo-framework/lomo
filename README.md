@@ -18,7 +18,7 @@ label.setClassName('tf1_test');
 label.label = "但是，我们只保护我们的代码不受在其之后执行的代码的干扰，并不能防御先于我们代码执行的代码。";
 stage.addChild(label);
 // create with jsx
-stage.addChild(<text label="但是，我们只保护我们的代码不受在其之后执行的代码的干扰，并不能防御先于我们代码执行的代码。" style={{fontSize: '30px', color: 'red'}} className="tf1_test"/>);
+stage.addChild(<text text="但是，我们只保护我们的代码不受在其之后执行的代码的干扰，并不能防御先于我们代码执行的代码。" style={{fontSize: '30px', color: 'red'}} className="tf1_test"/>);
 // mount stage to document.body
 stage.startup(document.body);
 
