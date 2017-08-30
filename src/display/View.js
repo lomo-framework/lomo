@@ -3,4 +3,7 @@
  */
 import DisplayContainer from "./DisplayContainer";
 export default class View extends DisplayContainer{
+  get nodeType(){
+    return 'div';
+  }
 }
