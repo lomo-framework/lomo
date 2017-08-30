@@ -6,7 +6,7 @@ import DisplayContainer from "./display/DisplayContainer";
 import Image from "./display/Image";
 import Video from "./display/Video";
 import Text from "./display/Text";
-import DOMNode from "./display/DOMNode";
+import Node from "./display/Node";
 import View from "./display/View";
 import Button from "./display/Button";
 import Sprite from "./display/Sprite";
@@ -23,7 +23,7 @@ module.exports = {
   DisplayContainer,
   Stage,
   Animation,
-  DOMNode,
+  Node,
   View,
   Image,
   Video,

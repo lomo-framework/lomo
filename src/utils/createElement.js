@@ -3,7 +3,7 @@
  */
 import eachChildren from "./eachChildren";
 import DisplayContainer from "../display/DisplayContainer";
-import DOMNode from "../display/DOMNode";
+import Node from "../display/Node";
 import View from "../display/View";
 import Text from "../display/Text";
 import Image from "../display/Image";
@@ -14,7 +14,7 @@ import Input from "../display/Input";
 import Video from "../display/Video";
 import Stage from "../display/Stage";
 
-// const DefaultDOMCreator = View;
+const DefaultDOMCreator = Node;
 
 const DOMCreators = {
   view: View,
@@ -35,7 +35,7 @@ export default function (nodeType, props, ...children) {
     if(DOMCreator){
       element = new DOMCreator(props);
     }else{
-      element = new DOMNode({...props, nodeType});
+      element = new DefaultDOMCreator({...props, nodeType});
     }
   }else{
     element = new nodeType(props);
