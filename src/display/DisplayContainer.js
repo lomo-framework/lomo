@@ -8,9 +8,9 @@ export default class DisplayContainer extends DisplayObject{
   get children(){
     return this._children;
   }
-  $initialize(DOMType, props){
+  $initialize(){
     this._children = [];
-    super.$initialize(DOMType, props);
+    super.$initialize();
   }
   getChildIndex(child){
     return this.children.indexOf(child);

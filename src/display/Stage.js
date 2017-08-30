@@ -2,6 +2,7 @@
  * Created by vincent on 17/3/11.
  */
 import DisplayContainer from "./DisplayContainer";
+let hashCode = 0;
 export default class Stage extends DisplayContainer{
   get parent(){
     return this;
@@ -13,6 +14,10 @@ export default class Stage extends DisplayContainer{
   get rootNode() {
     return this._root;
   }
+  /**
+   * 启动 Stage
+   * @param props
+   */
   startup(rootNode) {
     if(this._rootNode != rootNode){
       if(this.element.parentNode == this._root){
@@ -26,6 +31,11 @@ export default class Stage extends DisplayContainer{
     }
     return this;
   }
+
+  /**
+   * 移除 Stage
+   * @returns {Stage}
+   */
   shutdown() {
     if(this.stage) {
       this._root.removeChild(this.element);
@@ -37,6 +47,13 @@ export default class Stage extends DisplayContainer{
   ////////////////////////////////////////////////////////////////////////////////
   // override
   ////////////////////////////////////////////////////////////////////////////////
+  /**
+   * 根节点添加 data-lomo 属性
+   * @param props
+   */
+  render(props){
+    super.render({...props, 'data-lomo': hashCode++});
+  }
 
   $onAdded(){
     super.onAdded();

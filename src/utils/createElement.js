@@ -3,6 +3,7 @@
  */
 import eachChildren from "./eachChildren";
 import DisplayContainer from "../display/DisplayContainer";
+import DOMNode from "../display/DOMNode";
 import View from "../display/View";
 import Text from "../display/Text";
 import Image from "../display/Image";
@@ -13,7 +14,7 @@ import Input from "../display/Input";
 import Video from "../display/Video";
 import Stage from "../display/Stage";
 
-const DefaultDOMCreator = View;
+// const DefaultDOMCreator = View;
 
 const DOMCreators = {
   view: View,
@@ -27,17 +28,17 @@ const DOMCreators = {
   stage: Stage
 };
 
-export default function (type, props, ...children) {
+export default function (nodeType, props, ...children) {
   let element;
-  if(typeof type == 'string'){
-    let DOMCreator = DOMCreators[type];
+  if(typeof nodeType == 'string'){
+    let DOMCreator = DOMCreators[nodeType];
     if(DOMCreator){
       element = new DOMCreator(props);
     }else{
-      element = new DefaultDOMCreator(props);
+      element = new DOMNode({...props, nodeType});
     }
   }else{
-    element = new type(props);
+    element = new nodeType(props);
   }
   eachChildren(children || props.children, (child)=>{
     if(typeof child == 'string'){
@@ -46,7 +47,7 @@ export default function (type, props, ...children) {
     }else if(element instanceof DisplayContainer){
       element.addChild(child);
     }else{
-      console.warn(`只有容器才能添加子元素，${type} 不是容器`);
+      console.warn(`只有容器才能添加子元素，${nodeType} 不是容器`);
     }
   });
   return element;

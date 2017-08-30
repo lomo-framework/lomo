@@ -3,6 +3,7 @@
  */
 import signals from "signals";
 import Signal from "../utils/Signal";
+import assign from 'object-assign';
 import createDOMNode from "../utils/createDOMNode";
 let hashCode = 0;
 
@@ -46,15 +47,6 @@ export default class DisplayObject{
     this.render(this.props);
     this.onCreate();
     this.signal.dispatch(Signal.CREATE);
-  }
-  $setDOMProps(props){
-    if(props){
-      for (var name in props) {
-        if(props.hasOwnProperty(name)) {
-          this.element.setAttribute(name, props[name]);
-        }
-      }
-    }
   }
   onCreate(){
 
@@ -100,7 +92,7 @@ export default class DisplayObject{
       if(typeof styleName == 'string'){
         this.element.style[styleName] = value;
       }else if(typeof styleName == 'object'){
-        Object.assign(this.element.style, styleName);
+        assign(this.element.style, styleName);
       }
     }
   }
@@ -112,11 +104,30 @@ export default class DisplayObject{
       this.element.className = className;
     }
   }
+
+  /**
+   * 生成 DOM 节点
+   * @param props
+   */
   render(props){
-    let {style, className, ...others} = props;
-    this._element = createDOMNode(this.nodeType);
+    let {style, className, nodeType, ...others} = props;
+    this._element = createDOMNode(nodeType || this.nodeType);
     this.setStyle(style);
     this.setClassName(className);
     this.$setDOMProps(others);
+  }
+
+  /**
+   * 将属性应用到 DOM 节点
+   * @param props
+   */
+  $setDOMProps(props){
+    if(props){
+      for (var name in props) {
+        if(props.hasOwnProperty(name)) {
+          this.element.setAttribute(name, props[name]);
+        }
+      }
+    }
   }
 }
