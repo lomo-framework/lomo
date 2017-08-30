@@ -4,7 +4,6 @@
 import eachChildren from "./eachChildren";
 import DisplayContainer from "../display/DisplayContainer";
 import Node from "../display/Node";
-import View from "../display/View";
 import Text from "../display/Text";
 import Image from "../display/Image";
 import Button from "../display/Button";
@@ -17,7 +16,6 @@ import Stage from "../display/Stage";
 const DefaultDOMCreator = Node;
 
 const DOMCreators = {
-  view: View,
   text: Text,
   input: Input,
   image: Image,
