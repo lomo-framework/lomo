@@ -7,11 +7,11 @@ export default class Image extends DisplayObject{
     return 'img';
   }
   get src(){
-    return this.element.src;
+    return this.getProperty('src');
   }
   set src(value){
     if(value !== void 0) {
-      this.element.src = value;
+      this.setProperty('src', value);
     }
   }
   render(props){
@@ -19,6 +19,6 @@ export default class Image extends DisplayObject{
 
     super.render(others);
 
-    this.src = src;
+    this.element.src = src;
   }
 }

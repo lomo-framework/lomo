@@ -28,6 +28,7 @@ const DOMCreators = {
 
 export default function (nodeType, props, ...children) {
   let element;
+  props = {...props, children: children.length>0?children:props.children};
   if(typeof nodeType == 'string'){
     let DOMCreator = DOMCreators[nodeType];
     if(DOMCreator){
@@ -38,15 +39,15 @@ export default function (nodeType, props, ...children) {
   }else{
     element = new nodeType(props);
   }
-  eachChildren(children || props.children, (child)=>{
-    if(typeof child == 'string'){
-      var textNode = document.createTextNode(child);
-      element.element.appendChild(textNode);
-    }else if(element instanceof DisplayContainer){
-      element.addChild(child);
-    }else{
-      console.warn(`只有容器才能添加子元素，${nodeType} 不是容器`);
-    }
-  });
+  // eachChildren(children || props.children, (child)=>{
+  //   if(typeof child == 'string'){
+  //     var textNode = document.createTextNode(child);
+  //     element.element.appendChild(textNode);
+  //   }else if(element instanceof DisplayContainer){
+  //     element.addChild(child);
+  //   }else{
+  //     console.warn(`只有容器才能添加子元素，${nodeType} 不是容器`);
+  //   }
+  // });
   return element;
 }

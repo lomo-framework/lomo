@@ -13,6 +13,7 @@ import Stage from "./display/Stage";
 import Animation from "./display/Animation";
 import Input from "./display/Input";
 import createElement from "./utils/createElement";
+import cloneElement from "./utils/cloneElement";
 import Signal from "./utils/Signal";
 
 global.createElement = createElement;
@@ -34,5 +35,6 @@ module.exports = {
 
   // utils
   Signal,
-  createElement
+  createElement,
+  cloneElement
 };

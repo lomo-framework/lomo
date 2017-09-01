@@ -3,8 +3,9 @@
  */
 import signals from "signals";
 import Signal from "../utils/Signal";
-import assign from 'object-assign';
+import assign from "object-assign";
 import createDOMNode from "../utils/createDOMNode";
+import eachChildren from "../utils/eachChildren";
 let hashCode = 0;
 
 export default class DisplayObject{
@@ -39,13 +40,11 @@ export default class DisplayObject{
   }
   constructor(props){
     this._hashCode = hashCode ++;
-    this._props = props || {};
-
+    this._props = assign({}, this.constructor.defaultProps, props);
     this.$initialize();
   }
   $initialize(){
     this.render(this.props);
-    this.onCreate();
     this.signal.dispatch(Signal.CREATE);
   }
   onCreate(){
@@ -83,23 +82,50 @@ export default class DisplayObject{
   }
   getStyle(styleName){
     if(typeof styleName == 'string'){
-      return this.element.style[styleName];
+      return this.getProperty('style')[styleName];
     }
-    return this.element.style;
+    return this.getProperty('style');
   }
   setStyle(styleName, value){
     if(styleName !== void 0){
       if(typeof styleName == 'string'){
-        this.element.style[styleName] = value;
+        this.setProperty('style', assign({}, this.getProperty('style'), {[styleName]: value}));
       }else if(typeof styleName == 'object'){
-        assign(this.element.style, styleName);
+        this.setProperty('style', assign({}, this.getProperty('style'), styleName));
       }
     }
   }
   getClassName(){
-    return this.element.className;
+    return this.getProperty('className');
   }
   setClassName(className){
+    this.setProperty('className', className);
+  }
+  getProperty(name){
+    return this.props[name];
+  }
+  setProperty(name, value, validateNow=false){
+    if(this._props[name] !== value){
+      this._props = assign({}, this._props, {[name]: value});
+      this._invalid = true;
+      if(validateNow){
+        this.validateProperty();
+        // this.render(this.props);
+        // this.onUpdate();
+        // this.signal.dispatch(Signal.UPDATE);
+      }
+    }
+  }
+  validateProperty(){
+    if(this._invalid){
+      this._invalid = false;
+      this.render(this.props);
+    }
+  }
+  $validateStyle(style){
+    assign(this.element.style, style);
+  }
+  $validateClassName(className){
     if(className !== void 0){
       this.element.className = className;
     }
@@ -110,11 +136,14 @@ export default class DisplayObject{
    * @param props
    */
   render(props){
-    let {style, className, nodeType, ...others} = props;
+    let {style, className, nodeType, children, ...others} = props;
     this._element = createDOMNode(nodeType || this.nodeType);
-    this.setStyle(style);
-    this.setClassName(className);
+    this.$validateStyle(style);
+    this.$validateClassName(className);
     this.$setDOMProps(others);
+    this.$setDOMChildren(children);
+
+    this.onCreate();
   }
 
   /**
@@ -129,5 +158,15 @@ export default class DisplayObject{
         }
       }
     }
+  }
+  $setDOMChildren(children){
+    eachChildren(children, (child)=>{
+      if(typeof child == 'string'){
+        var textNode = document.createTextNode(child);
+        this.element.appendChild(textNode);
+      }else {
+        console.warn(`只有容器才能添加子元素`);
+      }
+    });
   }
 }

@@ -7,18 +7,17 @@ export default class Text extends DisplayObject{
     return 'p';
   }
   get text(){
-    return this.element.textContent;
+    return this.getProperty('text');
   }
   set text(value){
-    if(value !== void 0) {
-      this.element.textContent = value;
-    }
+    this.setProperty('text', value);
   }
   render(props){
-    let {text, ...others} = props || {};
+    let {text, children, ...others} = props || {};
 
     super.render(others);
 
-    this.text = text;
+    this.element.textContent = text || children;
+    // this.text = text;
   }
 }

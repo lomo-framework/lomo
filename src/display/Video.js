@@ -3,88 +3,92 @@
  */
 import DisplayObject from "./DisplayObject";
 export default class Video extends DisplayObject{
+  static defaultProps = {
+    width: 400,
+    height: 400
+  };
   get nodeType(){
     return 'video';
   }
   // src
   get src(){
-    return this.element.src;
+    return this.getProperty('src');
   }
   set src(value){
     if(value !== void 0) {
-      this.element.src = value;
+      this.setProperty('src', value);
     }
   }
   // controls
   get controls(){
-    return this.element.controls;
+    return this.getProperty('controls');
   }
   set controls(value){
     if(value !== void 0) {
-      this.element.controls = true;
+      this.setProperty('controls', value);
     }
   }
   // autoplay
   get autoplay(){
-    return this.element.autoplay;
+    return this.getProperty('autoplay');
   }
   set autoplay(value){
     if(value !== void 0) {
-      this.element.autoplay = value;
+      this.setProperty('autoplay', value);
     }
   }
   // width
   get width(){
-    return this.element.width;
+    return this.getProperty('width');
   }
   set width(value){
     if(typeof value == 'number') {
-      this.element.width = value;
+      this.setProperty('width', value);
     }
   }
   // height
   get height(){
-    return this.element.height;
+    return this.getProperty('height');
   }
   set height(value){
     if(typeof value == 'number') {
-      this.element.height = value;
+      this.setProperty('height', value);
     }
   }
   // loop
   get loop(){
-    return this.element.loop;
+    return this.getProperty('loop');
   }
   set loop(value){
     if(value !== void 0) {
-      this.element.loop = value;
+      this.setProperty('loop', value);
     }
   }
   // muted
   get muted(){
-    return this.element.muted;
+    return this.getProperty('muted');
   }
   set muted(value){
     if(value !== void 0) {
-      this.element.muted = value;
+      this.setProperty('muted', value);
     }
   }
   // poster
   get poster(){
-    return this.element.poster;
+    return this.getProperty('poster');
   }
   set poster(value){
     if(value !== void 0) {
-      this.element.poster = value;
+      this.setProperty('poster', value);
     }
   }
   // preload
   get preload(){
-    return this.element.preload;
+    return this.getProperty('preload');
   }
   set preload(value){
     if(value !== void 0) {
-      this.element.preload = value;
+      this.setProperty('preload', value);
     }
   }
 
@@ -93,22 +97,18 @@ export default class Video extends DisplayObject{
 
     super.render(others);
 
-    this.src = src;
-
-    this.controls = controls;
-
-    this.autoplay = autoplay;
-
-    this.width = width;
-
-    this.height = height;
-
-    this.loop = loop;
-
-    this.muted = muted;
-
-    this.poster = poster;
-
-    this.preload = preload;
+    if(typeof src == 'string') {
+      this.element.src = src;
+    }
+    this.element.controls = controls;
+    this.element.autoplay = autoplay;
+    this.element.width = width;
+    this.element.height = height;
+    this.element.loop = loop;
+    this.element.muted = muted;
+    if(poster)
+      this.element.poster = poster;
+    if(preload)
+      this.element.preload = preload;
   }
 }

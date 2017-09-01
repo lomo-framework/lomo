@@ -3,6 +3,7 @@
  */
 import warning from "warning";
 import DisplayObject from "./DisplayObject";
+import eachChildren from "../utils/eachChildren";
 export default class DisplayContainer extends DisplayObject{
   _children;
   get children(){
@@ -83,5 +84,17 @@ export default class DisplayContainer extends DisplayObject{
   }
   contains(child){
     return child == this || child.parent == this || this.children.some((item)=>item instanceof Container && item.contains(child));
+  }
+  $setDOMChildren(children){
+    eachChildren(children, (child)=>{
+      if(typeof child == 'string'){
+        console.warn(`不推荐为容器直接设置文本内容`);
+        var textNode = document.createTextNode(child);
+        this.element.appendChild(textNode);
+        this.children.push(child);
+      }else {
+        this.addChild(child);
+      }
+    });
   }
 }
