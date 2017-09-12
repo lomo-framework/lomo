@@ -2,10 +2,10 @@ import DisplayObject from "./DisplayObject";
 
 class Button extends DisplayObject {
   get text() {
-    return this.element.value;
+    return this.element.innerHTML;
   }
   set text(value) {
-    this.element.value = value;
+    this.element.innerHTML = value;
     this.dispatchEvent('textChanged');
   }
 
@@ -14,6 +14,12 @@ class Button extends DisplayObject {
     this.element.setAttribute('type', 'button');
 
     this.positioner = this.element;
+
+    this.clickHandler = this::this.clickHandler;
+    this.element.addEventListener('click', this.clickHandler, false);
+  }
+  clickHandler(event){
+    this.dispatchEvent('click');
   }
 }
 module.exports = Button;

@@ -5,8 +5,10 @@ class Video extends DisplayObject {
     return this.element.src;
   }
   set source(value) {
-    this.element.src = value;
-    this.dispatchEvent('sourceChanged');
+    if (this.element.src != value) {
+      this.element.src = value;
+      this.dispatchEvent('sourceChanged');
+    }
   }
   get autoplay() {
     return this.element.autoplay;
@@ -35,6 +37,19 @@ class Video extends DisplayObject {
   set preload(value) {
     this.element.preload = value;
     this.dispatchEvent('preloadChanged');
+  }
+  get paused() {
+    return this.element.paused;
+  }
+  set paused(value) {
+    if (this.element.paused != value) {
+      if(value){
+        this.element.pause();
+      }else{
+        this.element.play();
+      }
+      this.dispatchEvent('pausedChanged');
+    }
   }
 
   createElement() {
