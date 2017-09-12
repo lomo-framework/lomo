@@ -19,7 +19,6 @@ class Input extends DisplayObject {
     this.element.addEventListener('input', this.textChangeHandler, false);
 
     this.positioner = this.element;
-    this.className = "Input";
   }
   textChangeHandler(event){
     this.dispatchEvent('textChanged');

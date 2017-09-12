@@ -14,7 +14,6 @@ class Button extends DisplayObject {
     this.element.setAttribute('type', 'button');
 
     this.positioner = this.element;
-    this.className = "Button";
   }
 }
 module.exports = Button;

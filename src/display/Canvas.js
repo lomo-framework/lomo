@@ -10,7 +10,6 @@ class Canvas extends DisplayObject {
     this.element = document.createElement('canvas');
     this.$context = this.element.getContext('2d');
     this.positioner = this.element;
-    this.className = "Canvas";
   }
 
   clear(color) {

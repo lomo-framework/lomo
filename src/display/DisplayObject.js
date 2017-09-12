@@ -6,6 +6,9 @@ class DisplayObject extends EventDispatcher {
     super();
 
     this.createElement();
+    if (process.env.NODE_ENV !== 'production') {
+      this.positioner.setAttribute('data-lomo', this.constructor.name || 'unset');
+    }
     this.positioner.lomo_wrapper = this;
   }
   _element;
@@ -426,8 +429,6 @@ class DisplayObject extends EventDispatcher {
       this.positioner = this.element;
     this.positioner.style.display = 'block';
     //positioner.style.position = 'relative';
-
-    this.className = 'DisplayObject';
   }
   get alpha(){
     let stralpha = this.positioner.style.opacity;

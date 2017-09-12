@@ -40,7 +40,6 @@ class Video extends DisplayObject {
   createElement() {
     this.element = document.createElement('video');
     this.positioner = this.element;
-    this.className = "Video";
   }
 }
 module.exports = Video;

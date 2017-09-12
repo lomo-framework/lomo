@@ -13,7 +13,6 @@ class Label extends DisplayObject {
     this.element = document.createElement('span');
     this.element.style.whiteSpace = "nowrap";
     this.positioner = this.element;
-    this.className = "Label";
   }
 }
 module.exports = Label;

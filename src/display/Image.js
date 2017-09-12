@@ -4,7 +4,6 @@ class Image extends DisplayObject {
     this.element = document.createElement('img');
     //positioner.style.position = 'relative';
     this.positioner = this.element;
-    this.className = 'Image';
   }
   get source() {
     return this.element.src;

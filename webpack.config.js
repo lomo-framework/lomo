@@ -18,17 +18,37 @@ function getConf(filename, conf) {
         exclude: /(node_modules)/,
         loader: 'babel-loader'
       }]
-    }
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        }
+      })
+    ]
   };
   return assign(baseConf, conf);
 }
-var es5Conf = getConf(filename + '.js');
+var es5Conf = getConf(filename + '.js', {
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development')
+      }
+    }),
+    new BundleAnalyzerPlugin()
+  ]
+});
 var es5MinConf = getConf(filename + '.min.js', {
-  plugins:[new webpack.optimize.UglifyJsPlugin({
-    compress: { warnings: false }
-  })]
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    })
+  ]
 });
-var npmConf = getConf(filename + '.es6.js', {
-  plugins: [new BundleAnalyzerPlugin()]
-});
-module.exports = [npmConf, es5Conf, es5MinConf];
+module.exports = [es5Conf, es5MinConf];
