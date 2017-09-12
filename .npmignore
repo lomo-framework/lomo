@@ -1,3 +1,13 @@
-node_modules
+node_modules/
 doc/
 src/
+.idea/
+.babelrc
+.editorconfig
+.esdoc.json
+.eslintrc
+server.js
+webpack.config.js
+webpack.dist.config.js
+yarn.lock
+
