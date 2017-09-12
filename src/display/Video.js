@@ -1,6 +1,6 @@
 import DisplayObject from "./DisplayObject";
 
-export default class Video extends DisplayObject {
+class Video extends DisplayObject {
   get source() {
     return this.element.src;
   }
@@ -39,9 +39,8 @@ export default class Video extends DisplayObject {
 
   createElement() {
     this.element = document.createElement('video');
-    this.className = "Video";
-
     this.positioner = this.element;
-    return this.element;
+    this.className = "Video";
   }
 }
+module.exports = Video;

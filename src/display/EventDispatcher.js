@@ -85,5 +85,4 @@ Object.assign( EventDispatcher.prototype, {
 	}
 
 } );
-
-export default EventDispatcher;
+module.exports = EventDispatcher;

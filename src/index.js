@@ -7,6 +7,7 @@ import Canvas from "./display/Canvas";
 import Image from "./display/Image";
 import Input from "./display/Input";
 import Label from "./display/Label";
+import Button from "./display/Button";
 import Video from "./display/Video";
 
 global.lomo = module.exports = {
@@ -17,5 +18,6 @@ global.lomo = module.exports = {
   Image,
   Input,
   Label,
+  Button,
   Video
 };

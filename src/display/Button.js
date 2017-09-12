@@ -1,6 +1,6 @@
 import DisplayObject from "./DisplayObject";
 
-export default class Button extends DisplayObject {
+class Button extends DisplayObject {
   get text() {
     return this.element.value;
   }
@@ -10,10 +10,11 @@ export default class Button extends DisplayObject {
   }
 
   createElement() {
-    this.element = document.createElement('button') as WrappedHTMLElement;
+    this.element = document.createElement('button');
     this.element.setAttribute('type', 'button');
 
     this.positioner = this.element;
-    return this.element;
+    this.className = "Button";
   }
 }
+module.exports = Button;

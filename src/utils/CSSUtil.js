@@ -1,6 +1,5 @@
 import StringUtil from './StringUtil';
-export default class CSSUtil
-{
+class CSSUtil {
   /**
    * @private
    */
@@ -181,3 +180,4 @@ export default class CSSUtil
     purple:	 0xFF800080
   }
 }
+module.exports = CSSUtil;

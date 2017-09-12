@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-export default class StringUtil {
+class StringUtil {
 
   static trim(str) {
     if (str == null) return '';
@@ -118,3 +118,4 @@ export default class StringUtil {
     }
   }
 }
+module.exports = StringUtil;

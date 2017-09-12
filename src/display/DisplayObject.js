@@ -1,7 +1,7 @@
 import EventDispatcher from "./EventDispatcher";
 import {colorStyles, numericStyles, skipStyles} from "../utils/constants";
 import {attributeFromColor, parseStyles} from "../utils/CSSUtil";
-export default class DisplayObject extends EventDispatcher {
+class DisplayObject extends EventDispatcher {
   constructor() {
     super();
 
@@ -391,7 +391,7 @@ export default class DisplayObject extends EventDispatcher {
     }
 
     if (isNaN(this._explicitHeight) && isNaN(this._percentHeight)) {
-      value = this.getValue("height");
+      let value = this.getValue("height");
       if (value !== undefined) {
         if (typeof value == 'string') {
           s = String(value);
@@ -424,10 +424,10 @@ export default class DisplayObject extends EventDispatcher {
       this.element = document.createElement('div');
     if (this.positioner == null)
       this.positioner = this.element;
-    this.className = 'DisplayObject';
     this.positioner.style.display = 'block';
     //positioner.style.position = 'relative';
-    return this.positioner;
+
+    this.className = 'DisplayObject';
   }
   get alpha(){
     let stralpha = this.positioner.style.opacity;
@@ -477,5 +477,5 @@ export default class DisplayObject extends EventDispatcher {
       this.element.style[p] = value;
     }
   }
-
 }
+module.exports = DisplayObject;

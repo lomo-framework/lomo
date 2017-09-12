@@ -17,6 +17,16 @@
   var container = new lomo.DisplayObject();
   app.addElement(container);
 
+  var input1 = new lomo.Input();
+  input1.style = {fontSize: '30px', color: 'red'};
+  input1.text = "但是，";
+  input1.name = 'input1';
+  container.addElement(input1);
+
+  input1.addEventListener('textChanged', function (event) {
+    console.log('input', event.target.text);
+  });
+
   var label1 = new lomo.Label();
   label1.style = {fontSize: '30px', color: 'red'};
   label1.className = 'tf1_test';

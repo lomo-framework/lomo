@@ -3,17 +3,14 @@
  */
 import DisplayObject from "./DisplayObject";
 
-export default class Canvas extends DisplayObject {
+class Canvas extends DisplayObject {
   $context;
 
   createElement() {
     this.element = document.createElement('canvas');
-    this.className = "Canvas";
-
     this.$context = this.element.getContext('2d');
-
     this.positioner = this.element;
-    return this.element;
+    this.className = "Canvas";
   }
 
   clear(color) {
@@ -455,3 +452,4 @@ export default class Canvas extends DisplayObject {
     this.$context.stroke();
   }
 }
+module.exports = Canvas;

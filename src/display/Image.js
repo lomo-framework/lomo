@@ -1,15 +1,11 @@
 import DisplayObject from "./DisplayObject";
-export default class Image extends DisplayObject {
-
+class Image extends DisplayObject {
   createElement() {
     this.element = document.createElement('img');
-    this.element.className = 'Image';
     //positioner.style.position = 'relative';
-
     this.positioner = this.element;
-    return this.element;
+    this.className = 'Image';
   }
-
   get source() {
     return this.element.src;
   }
@@ -21,3 +17,4 @@ export default class Image extends DisplayObject {
     }
   }
 }
+module.exports = Image;
