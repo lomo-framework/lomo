@@ -1,172 +1,481 @@
-/**
- * Created by vincent on 17/3/11.
- */
-import signals from "signals";
-import Signal from "../utils/Signal";
-import assign from "object-assign";
-import createDOMNode from "../utils/createDOMNode";
-import eachChildren from "../utils/eachChildren";
-let hashCode = 0;
+import EventDispatcher from "./EventDispatcher";
+import {colorStyles, numericStyles, skipStyles} from "../utils/constants";
+import {attributeFromColor, parseStyles} from "../utils/CSSUtil";
+export default class DisplayObject extends EventDispatcher {
+  constructor() {
+    super();
 
-export default class DisplayObject{
-  _signal;
-  get signal(){
-    if(!this._signal)
-      this._signal = new signals.Signal();
-    return this._signal;
-  }
-
-  _hashCode;
-  get hashCode(){
-    return this._hashCode;
+    this.createElement();
+    this.positioner.lomo_wrapper = this;
   }
   _element;
+
   get element(){
     return this._element;
   }
-  _parent;
-  get parent(){
-    return this._parent;
-  }
-  _props;
-  get props(){
-    return this._props;
-  }
-  get stage(){
-    return this.parent?this.parent.stage:null;
-  }
-  get nodeType(){
-    return null;
-  }
-  constructor(props){
-    this._hashCode = hashCode ++;
-    this._props = assign({}, this.constructor.defaultProps, props);
-    this.$initialize();
-  }
-  $initialize(){
-    this.render(this.props);
-    this.signal.dispatch(Signal.CREATE);
-  }
-  onCreate(){
 
-  }
-  onDestory(){
-    this.signal.dispatch(Signal.DESTORY);
-  }
-  querySelector(selector){
-    return this.element.querySelector(selector);
+  set element(value) {
+    if (this._element != value) {
+      this._element = value;
+      this.dispatchEvent("elementChanged");
+    }
   }
 
-  removeFromContainer(){
-    this.parent && this.parent.removeChild(this);
+  _values = {};
+  getValue(name) {
+    return this._values[name];
   }
-  onAdded(){
-    this.signal.dispatch(Signal.ADDED_TO_STAGE);
+  setValue(name, value) {
+    let oldValue = this._values[name];
+    if (oldValue != value) {
+      this._values[name] = value;
+      this.dispatchEvent({type: `valueChanged`, propertyName: name, oldValue: oldValue, newValue: value});
+    }
   }
-  onRemoved(){
-    this.signal.dispatch(Signal.REMOVED_FROM_STAGE);
-  }
-  on(type, listener, useCapture){
-    this.element.addEventListener(type, listener, useCapture);
-  }
-  once(type, listener, useCapture){
-    let wrapper = ()=>{
-      this.off(type, wrapper, useCapture);
 
-      listener();
-    };
-    this.on(type, wrapper, useCapture);
+  get lomo_wrapper() {
+    return this;
   }
-  off(type, listener, useCapture){
-    this.element.removeEventListener(type, listener, useCapture);
+  set lomo_wrapper(value) {
   }
-  getStyle(styleName){
-    if(typeof styleName == 'string'){
-      return this.getProperty('style')[styleName];
-    }
-    return this.getProperty('style');
-  }
-  setStyle(styleName, value){
-    if(styleName !== void 0){
-      if(typeof styleName == 'string'){
-        this.setProperty('style', assign({}, this.getProperty('style'), {[styleName]: value}));
-      }else if(typeof styleName == 'object'){
-        this.setProperty('style', assign({}, this.getProperty('style'), styleName));
-      }
-    }
-  }
-  getClassName(){
-    return this.getProperty('className');
-  }
-  setClassName(className){
-    this.setProperty('className', className);
-  }
-  getProperty(name){
-    return this.props[name];
-  }
-  setProperty(name, value, validateNow=false){
-    if(this._props[name] !== value){
-      this._props = assign({}, this._props, {[name]: value});
-      this._invalid = true;
-      if(validateNow){
-        this.validateProperty();
-        // this.render(this.props);
-        // this.onUpdate();
-        // this.signal.dispatch(Signal.UPDATE);
-      }
-    }
-  }
-  validateProperty(){
-    if(this._invalid){
-      this._invalid = false;
-      this.render(this.props);
-    }
-  }
-  $validateStyle(style){
-    assign(this.element.style, style);
-  }
-  $validateClassName(className){
-    if(className !== void 0){
-      this.element.className = className;
-    }
+
+  _explicitWidth;
+
+  get explicitWidth() {
+    return this._explicitWidth;
   }
 
   /**
-   * 生成 DOM 节点
-   * @param props
+   *  @private
    */
-  render(props){
-    let {style, className, nodeType, children, ...others} = props;
-    this._element = createDOMNode(nodeType || this.nodeType);
-    this.$validateStyle(style);
-    this.$validateClassName(className);
-    this.$setDOMProps(others);
-    this.$setDOMChildren(children);
+  set explicitWidth(value) {
+    if (this._explicitWidth == value)
+      return;
 
-    this.onCreate();
+    // width can be pixel or percent not both
+    if (!isNaN(value))
+      this._percentWidth = NaN;
+
+    this._explicitWidth = value;
+
+    this.dispatchEvent("explicitWidthChanged");
+  }
+
+  _explicitHeight;
+
+  /**
+   *  The explicitly set width (as opposed to measured width
+   *  or percentage width).
+   *
+   *  @langversion 3.0
+   *  @playerversion Flash 10.2
+   *  @playerversion AIR 2.6
+   *  @productversion FlexJS 0.0
+   */
+  get explicitHeight() {
+    return this._explicitHeight;
   }
 
   /**
-   * 将属性应用到 DOM 节点
-   * @param props
+   *  @private
    */
-  $setDOMProps(props){
-    if(props){
-      for (var name in props) {
-        if(props.hasOwnProperty(name)) {
-          this.element.setAttribute(name, props[name]);
+  set explicitHeight(value) {
+    if (this._explicitHeight == value)
+      return;
+    // height can be pixel or percent not both
+    if (!isNaN(value))
+      this._percentHeight = NaN;
+    this._explicitHeight = value;
+    this.dispatchEvent("explicitHeightChanged");
+  }
+
+  _percentWidth;
+  get percentWidth() {
+    return this._percentWidth;
+  }
+  set percentWidth(value) {
+    this._percentWidth = value;
+    this.positioner.style.width = value.toString() + '%';
+    if (!isNaN(value))
+      this._explicitWidth = NaN;
+    this.dispatchEvent("percentWidthChanged");
+  }
+
+  _percentHeight;
+  get percentHeight() {
+    return this._percentHeight;
+  }
+  set percentHeight(value) {
+    this._percentHeight = value;
+    this.positioner.style.height = value.toString() + '%';
+    if (!isNaN(value))
+      this._explicitHeight = NaN;
+
+    this.dispatchEvent("percentHeightChanged");
+  }
+
+  _width;
+  get width() {
+    let pixels;
+    let strpixels = this.positioner.style.width;
+    if (strpixels !== null && strpixels.indexOf('%') != -1)
+      pixels = NaN;
+    else if (strpixels === "")
+      pixels = NaN;
+    else
+      pixels = parseFloat(strpixels);
+    if (isNaN(pixels)) {
+      pixels = this.positioner.offsetWidth;
+      if (pixels === 0 && this.positioner.scrollWidth !== 0) {
+        // invisible child elements cause offsetWidth to be 0.
+        pixels = this.positioner.scrollWidth;
+      }
+    }
+    return pixels;
+  }
+
+  set width(value) {
+    if (this.explicitWidth != value) {
+      this.explicitWidth = value;
+    }
+
+    if (this._width != value) {
+      this._width = value;
+
+      this.positioner.style.width = value.toString() + 'px';
+
+      this.dispatchEvent("widthChanged");
+    }
+  }
+
+  _height;
+  get height() {
+    let pixels;
+    let strpixels = this.positioner.style.height;
+    if (strpixels !== null && strpixels.indexOf('%') != -1)
+      pixels = NaN;
+    else if (strpixels === "")
+      pixels = NaN;
+    else
+      pixels = parseFloat(strpixels);
+    if (isNaN(pixels)) {
+      pixels = this.positioner.offsetHeight;
+      if (pixels === 0 && this.positioner.scrollHeight !== 0) {
+        // invisible child elements cause offsetHeight to be 0.
+        pixels = this.positioner.scrollHeight;
+      }
+    }
+    return pixels;
+  }
+  set height(value) {
+    if (this.explicitHeight != value) {
+      this.explicitHeight = value;
+    }
+
+    if (this._height != value) {
+      this._height = value;
+      this.positioner.style.height = value.toString() + 'px';
+      this.dispatchEvent("heightChanged");
+    }
+  }
+
+  // isWidthSizedToContent() {
+  //   if (!isNaN(this._explicitWidth))
+  //     return false;
+  //   if (!isNaN(this._percentWidth))
+  //     return false;
+  //   let left = this.getValue("left");
+  //   let right = this.getValue("right");
+  //   return (left === undefined || right === undefined);
+  //
+  // }
+
+  // isHeightSizedToContent() {
+  //   if (!isNaN(this._explicitHeight))
+  //     return false;
+  //   if (!isNaN(this._percentHeight))
+  //     return false;
+  //   let top = this.getValue("top");
+  //   let bottom = this.getValue("bottom");
+  //   return (top === undefined || bottom === undefined);
+  // }
+
+  _x;
+
+  set x(value)
+  {
+    //positioner.style.position = 'absolute';
+    this.positioner.style.left = value.toString() + 'px';
+  }
+
+  get x() {
+    let strpixels = this.positioner.style.left;
+    let pixels = parseFloat(strpixels);
+    if (isNaN(pixels))
+      pixels = this.positioner.offsetLeft;
+    return pixels;
+  }
+
+  _y;
+
+  set y(value) {
+    //positioner.style.position = 'absolute';
+    this.positioner.style.top = value.toString() + 'px';
+  }
+
+  get y() {
+    let strpixels = positioner.style.top;
+    let pixels = parseFloat(strpixels);
+    if (isNaN(pixels))
+      pixels = this.positioner.offsetTop;
+    return pixels;
+  }
+
+
+  displayStyleForLayout;
+
+  get visible() {
+    return this.positioner.style.display !== 'none';
+  }
+
+  set visible(value) {
+    let oldValue = this.positioner.style.display !== 'none';
+    if (value !== oldValue) {
+      if (!value) {
+        this.displayStyleForLayout = this.positioner.style.display;
+        this.positioner.style.display = 'none';
+      } else {
+        if (this.displayStyleForLayout != null)
+          this.positioner.style.display = this.displayStyleForLayout;
+      }
+      this.dispatchEvent('visibleChanged');
+    }
+  }
+
+  internalChildren() {
+    return this.element.childNodes;
+  }
+
+  _name;
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    if (this._name != value) {
+      this._name = value;
+      this.dispatchEvent("nameChanged");
+    }
+  }
+  getElementByName(name){
+    let children = this.internalChildren();
+    let n = children.length;
+    for (let i = 0; i < n; i++) {
+      let element = children[i].lomo_wrapper;
+      if(element){
+        if (element.name == name)
+          return element;
+        else{
+          let deepElement = element.getElementByName(name);
+          if(deepElement){
+            return deepElement;
+          }
         }
       }
     }
   }
-  $setDOMChildren(children){
-    eachChildren(children, (child)=>{
-      if(typeof child == 'string'){
-        var textNode = document.createTextNode(child);
-        this.element.appendChild(textNode);
-      }else {
-        console.warn(`只有容器才能添加子元素`);
-      }
-    });
+
+  _style;
+
+  get style() {
+    return this._style;
   }
+
+  set style(value) {
+    if (this._style != value) {
+      if (typeof value == 'string') {
+        this._style = parseStyles(value);
+      }
+      else
+        this._style = value;
+      if (!isNaN(this._y))
+        this._style.top = this._y;
+      if (!isNaN(this._x))
+        this._style.left = this._x;
+
+      if (this.parent)
+        this.applyStyles(this._style);
+
+      this.dispatchEvent("styleChanged");
+    }
+  }
+
+  _className;
+
+  get className() {
+    return this._className;
+  }
+
+  set className(value) {
+    if (this._className != value) {
+      this._className = value;
+      this.positioner.className = value;
+      this.dispatchEvent("classNameChanged");
+    }
+  }
+
+  addElement(c, dispatchEvent = true) {
+    this.element.appendChild(c.positioner);
+    c.addedToParent();
+  }
+
+  addElementAt(c, index, dispatchEvent = true) {
+    let children = this.internalChildren();
+    if (index >= children.length)
+      this.addElement(c);
+    else {
+      this.element.insertBefore(c.positioner, children[index]);
+      c.addedToParent();
+    }
+  }
+
+  getElementAt(index) {
+    let children = this.internalChildren();
+    if (children.length == 0) {
+      return null;
+    }
+    return children[index].lomo_wrapper;
+  }
+
+  getElementIndex(c) {
+    let children = this.internalChildren();
+    let n = children.length;
+    for (let i = 0; i < n; i++) {
+      if (children[i] == c.element)
+        return i;
+    }
+    return -1;
+
+  }
+
+  removeElement(c, dispatchEvent = true) {
+    this.element.removeChild(c.positioner);
+  }
+
+  get numElements() {
+    let children = this.internalChildren();
+    return children.length;
+  }
+
+  addedToParent() {
+    if (this.style)
+      this.applyStyles(this.style);
+
+    if (isNaN(this._explicitWidth) && isNaN(this._percentWidth)) {
+      let value = this.getValue("width");
+      if (value !== undefined) {
+        if (typeof value == 'string') {
+          let s = String(value);
+          if (s.indexOf("%") != -1)
+            this._percentWidth = Number(s.substring(0, s.length - 1));
+          else {
+            if (s.indexOf("px") != -1)
+              s = s.substring(0, s.length - 2);
+            this._width = this._explicitWidth = Number(s);
+          }
+        }
+        else
+          this._width = this._explicitWidth = value;
+      }
+    }
+
+    if (isNaN(this._explicitHeight) && isNaN(this._percentHeight)) {
+      value = this.getValue("height");
+      if (value !== undefined) {
+        if (typeof value == 'string') {
+          s = String(value);
+          if (s.indexOf("%") != -1)
+            this._percentHeight = Number(s.substring(0, s.length - 1));
+          else {
+            if (s.indexOf("px") != -1)
+              s = s.substring(0, s.length - 2);
+            this._height = this._explicitHeight = Number(s);
+          }
+        }
+        else
+          this._height = this._explicitHeight = value;
+      }
+    }
+  }
+
+  _positioner;
+
+  get positioner() {
+    return this._positioner;
+  }
+
+  set positioner(value) {
+    this._positioner = value;
+  }
+
+  createElement(){
+    if (this.element == null)
+      this.element = document.createElement('div');
+    if (this.positioner == null)
+      this.positioner = this.element;
+    this.className = 'DisplayObject';
+    this.positioner.style.display = 'block';
+    //positioner.style.position = 'relative';
+    return this.positioner;
+  }
+  get alpha(){
+    let stralpha = this.positioner.style.opacity;
+    let alpha = parseFloat(stralpha);
+    return alpha;
+  }
+
+  set alpha(value) {
+    this.positioner.style.opacity = value;
+  }
+
+  get parent() {
+    let positioner = this.positioner;
+    while(positioner = positioner.parentNode){
+      if(positioner.lomo_wrapper)
+        return positioner.lomo_wrapper;
+    }
+    return null;
+  }
+
+  applyStyles(styles) {
+    // let styleList = perInstanceStyles;
+    // let colorStyles = colorStyles;
+    // let skipStyles = skipStyles;
+    // let numericStyles = numericStyles;
+    let listObj = styles;
+    if (styles.styleList)
+      listObj = styles.styleList;
+    for (let p in listObj) {
+      //if (styleList[p])
+      if (skipStyles[p])
+        continue;
+      let value = styles[p];
+      if (value === undefined)
+        continue;
+      if (typeof(value) == 'number') {
+        if (colorStyles[p])
+          value = attributeFromColor(value);
+        else if (numericStyles[p])
+          value = value.toString();
+        else
+          value = value.toString() + 'px';
+      } else if (p == 'backgroundImage') {
+        if (p.indexOf('url') !== 0)
+          value = 'url(' + value + ')';
+      }
+      this.element.style[p] = value;
+    }
+  }
+
 }

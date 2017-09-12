@@ -1,24 +1,23 @@
-/**
- * Created by vincent on 17/3/11.
- */
 import DisplayObject from "./DisplayObject";
-export default class Image extends DisplayObject{
-  get nodeType(){
-    return 'img';
+export default class Image extends DisplayObject {
+
+  createElement() {
+    this.element = document.createElement('img');
+    this.element.className = 'Image';
+    //positioner.style.position = 'relative';
+
+    this.positioner = this.element;
+    return this.element;
   }
-  get src(){
-    return this.getProperty('src');
+
+  get source() {
+    return this.element.src;
   }
-  set src(value){
-    if(value !== void 0) {
-      this.setProperty('src', value);
+  set source(value) {
+    let oldValue = this.element.src;
+    if (value != oldValue) {
+      this.element.src = value;
+      this.dispatchEvent( new Event("sourceChanged") );
     }
-  }
-  render(props){
-    let {src, ...others} = props;
-
-    super.render(others);
-
-    this.element.src = src;
   }
 }

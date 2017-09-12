@@ -2,40 +2,18 @@
  * 动画
  */
 import DisplayObject from "./DisplayObject";
-export default class Sprite extends DisplayObject{
+
+export default class Canvas extends DisplayObject {
   $context;
-  get nodeType(){
-    return 'canvas';
-  }
-  render(props){
-    let {width, height, ...others} = props;
 
-    super.render(others);
-
-    this.width = width;
-
-    this.height = height;
-  }
-  onCreate() {
-    super.onCreate();
+  createElement() {
+    this.element = document.createElement('canvas');
+    this.className = "Canvas";
 
     this.$context = this.element.getContext('2d');
-  }
-  get width(){
-    return this.element.width;
-  }
-  set width(value){
-    if(typeof value == 'number') {
-      this.element.width = value;
-    }
-  }
-  get height(){
-    return this.element.height;
-  }
-  set height(value){
-    if(typeof value == 'number') {
-      this.element.height = value;
-    }
+
+    this.positioner = this.element;
+    return this.element;
   }
 
   clear(color) {

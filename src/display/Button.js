@@ -1,24 +1,19 @@
-/**
- * Created by vincent on 17/3/11.
- */
 import DisplayObject from "./DisplayObject";
-export default class Button extends DisplayObject{
-  get nodeType(){
-    return 'button';
-  }
-  get label(){
-    return this.element.textContent;
-  }
-  set label(value){
-    if(value !== void 0) {
-      this.element.textContent = value;
-    }
-  }
-  render(props){
-    let {label, ...others} = props;
 
-    super.render(others);
-    
-    this.label = label;
+export default class Button extends DisplayObject {
+  get text() {
+    return this.element.value;
+  }
+  set text(value) {
+    this.element.value = value;
+    this.dispatchEvent('textChanged');
+  }
+
+  createElement() {
+    this.element = document.createElement('button') as WrappedHTMLElement;
+    this.element.setAttribute('type', 'button');
+
+    this.positioner = this.element;
+    return this.element;
   }
 }
