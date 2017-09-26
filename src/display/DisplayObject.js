@@ -227,7 +227,7 @@ class DisplayObject extends EventDispatcher {
   }
 
   get y() {
-    let strpixels = positioner.style.top;
+    let strpixels = this.positioner.style.top;
     let pixels = parseFloat(strpixels);
     if (isNaN(pixels))
       pixels = this.positioner.offsetTop;
@@ -397,7 +397,7 @@ class DisplayObject extends EventDispatcher {
       let value = this.getValue("height");
       if (value !== undefined) {
         if (typeof value == 'string') {
-          s = String(value);
+          let s = String(value);
           if (s.indexOf("%") != -1)
             this._percentHeight = Number(s.substring(0, s.length - 1));
           else {
@@ -442,7 +442,7 @@ class DisplayObject extends EventDispatcher {
 
   get parent() {
     let positioner = this.positioner;
-    while(positioner = positioner.parentNode){
+    while(positioner = positioner.parentNode, positioner){
       if(positioner.lomo_wrapper)
         return positioner.lomo_wrapper;
     }

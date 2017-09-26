@@ -9,7 +9,7 @@
     "test": "karma start",
     "debug": "cross-env NODE_ENV=development webpack --watch",
     "build": "webpack",
-    "eslint": "eslint src/**/*.js",
+    "eslint": "eslint src/**/*.js --quiet",
     "esdoc": "esdoc"
   },
   "author": "",
