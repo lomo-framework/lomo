@@ -6,10 +6,6 @@ class DisplayObject extends EventDispatcher {
     super();
 
     this.createElement();
-    if (process.env.NODE_ENV !== 'production') {
-      this.positioner.setAttribute('data-lomo', this.constructor.name || 'unset');
-    }
-    this.positioner.lomo_wrapper = this;
   }
   _element;
 
@@ -207,7 +203,7 @@ class DisplayObject extends EventDispatcher {
 
   set x(value)
   {
-    //positioner.style.position = 'absolute';
+    //this.positioner.style.position = 'absolute';
     this.positioner.style.left = value.toString() + 'px';
   }
 
@@ -222,7 +218,7 @@ class DisplayObject extends EventDispatcher {
   _y;
 
   set y(value) {
-    //positioner.style.position = 'absolute';
+    //this.positioner.style.position = 'absolute';
     this.positioner.style.top = value.toString() + 'px';
   }
 
@@ -419,14 +415,18 @@ class DisplayObject extends EventDispatcher {
   }
 
   set positioner(value) {
-    this._positioner = value;
+    if(this._positioner != value) {
+      this._positioner = value;
+
+      if (process.env.NODE_ENV !== 'production') {
+        this.positioner.setAttribute('data-lomo', this.constructor.name || 'unset');
+      }
+      this.positioner.lomo_wrapper = this;
+    }
   }
 
   createElement(){
-    if (this.element == null)
-      this.element = document.createElement('div');
-    if (this.positioner == null)
-      this.positioner = this.element;
+    this.positioner = this.element = document.createElement('div');
     this.positioner.style.display = 'block';
     //positioner.style.position = 'relative';
   }

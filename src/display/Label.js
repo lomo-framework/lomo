@@ -10,9 +10,8 @@ class Label extends DisplayObject {
   }
 
   createElement() {
-    this.element = document.createElement('span');
+    this.positioner = this.element = document.createElement('span');
     this.element.style.whiteSpace = "nowrap";
-    this.positioner = this.element;
   }
 }
 module.exports = Label;

@@ -10,10 +10,8 @@ class Button extends DisplayObject {
   }
 
   createElement() {
-    this.element = document.createElement('button');
+    this.positioner = this.element = document.createElement('button');
     this.element.setAttribute('type', 'button');
-
-    this.positioner = this.element;
 
     this.clickHandler = this::this.clickHandler;
     this.element.addEventListener('click', this.clickHandler, false);

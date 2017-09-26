@@ -53,8 +53,7 @@ class Video extends DisplayObject {
   }
 
   createElement() {
-    this.element = document.createElement('video');
-    this.positioner = this.element;
+    this.positioner = this.element = document.createElement('video');
   }
 }
 module.exports = Video;

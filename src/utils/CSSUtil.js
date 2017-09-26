@@ -1,12 +1,5 @@
 import StringUtil from './StringUtil';
 class CSSUtil {
-  /**
-   * @private
-   */
-  constructor() {
-    throw new Error("CSSUtil should not be instantiated.");
-  }
-
   static attributeFromColor(value) {
     var hexVal = value.toString(16);
     if(value > 16777215)

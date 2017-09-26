@@ -1,9 +1,8 @@
 import DisplayObject from "./DisplayObject";
 class Image extends DisplayObject {
   createElement() {
-    this.element = document.createElement('img');
+    this.positioner = this.element = document.createElement('img');
     //positioner.style.position = 'relative';
-    this.positioner = this.element;
   }
   get source() {
     return this.element.src;

@@ -12,13 +12,11 @@ class Input extends DisplayObject {
   }
 
   createElement() {
-    this.element = document.createElement('input');
+    this.positioner = this.element = document.createElement('input');
     this.element.setAttribute('type', 'text');
 
     this.textChangeHandler = this::this.textChangeHandler;
     this.element.addEventListener('input', this.textChangeHandler, false);
-
-    this.positioner = this.element;
   }
   textChangeHandler(event){
     this.dispatchEvent('textChanged');
