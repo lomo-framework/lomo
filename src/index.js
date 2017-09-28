@@ -4,7 +4,7 @@
 import DisplayObject from "./display/DisplayObject";
 import Application from "./display/Application";
 import Canvas from "./display/Canvas";
-import Sprite from "./display/Sprite";
+import Shape from "./display/Shape";
 import Image from "./display/Image";
 import Input from "./display/Input";
 import Label from "./display/Label";
@@ -16,7 +16,7 @@ global.lomo = module.exports = {
   DisplayObject,
   Application,
   Canvas,
-  Sprite,
+  Shape,
   Image,
   Input,
   Label,

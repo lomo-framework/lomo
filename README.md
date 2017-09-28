@@ -17,7 +17,7 @@
   app.addElement(img1);
 
   var label1 = new Label();
-  label1.style = {fontSize: '30px', color: 'red'};
+  label1.setStyle({fontSize: '30px', color: 'red'});
   label1.className = 'tf1_test';
   label1.text = "但是，我们只保护我们的代码不受在其之后执行的代码的干扰，并不能防御先于我们代码执行的代码。";
   app.addElement(label1);

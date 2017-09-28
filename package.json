@@ -49,9 +49,8 @@
     "webpack-hot-middleware": "^2.13.2"
   },
   "dependencies": {
-    "gsap": "^1.19.1",
+    "hashmap": "^2.3.0",
     "object-assign": "^4.1.1",
-    "signals": "^1.0.0",
     "warning": "^3.0.0"
   }
 }

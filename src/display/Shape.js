@@ -3,7 +3,7 @@
  */
 import Canvas from "./Canvas";
 
-class Sprite extends Canvas {
+class Shape extends Canvas {
   $context;
 
   createElement() {
@@ -451,4 +451,4 @@ class Sprite extends Canvas {
     this.$context.stroke();
   }
 }
-module.exports = Canvas;
+module.exports = Shape;

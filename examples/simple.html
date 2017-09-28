@@ -17,12 +17,15 @@
   app.addElement(img1);
 
   var container = new lomo.DisplayObject();
+  container.setStyle({backgroundColor: 0xffee99});
   app.addElement(container);
 
   var input1 = new lomo.Input();
-  input1.style = {fontSize: '30px', color: 'red'};
+  input1.setStyle({fontSize: '30px', color: 'red'});
   input1.text = "但是，";
   input1.name = 'input1';
+  input1.props.set('value', '______________________423er32');
+  console.log(input1.props.get('value'));
   container.addElement(input1);
 
   input1.addEventListener('textChanged', function (event) {
