@@ -278,5 +278,14 @@ class DisplayObject extends EventDispatcher {
       }
     }
   }
+  addDOMListener(type,listener,useCapture){
+    this.positioner.addEventListener(type,listener,useCapture);
+  }
+  removeDOMListener(type,listener,useCapture){
+    this.positioner.removeEventListener(type,listener,useCapture);
+  }
+  dispatchDOMEvent(event){
+    this.positioner.dispatchEvent(event);
+  }
 }
 module.exports = DisplayObject;
