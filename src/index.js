@@ -10,6 +10,7 @@ import Input from "./display/Input";
 import Label from "./display/Label";
 import Button from "./display/Button";
 import Video from "./display/Video";
+import createElement from "./utils/createElement";
 
 global.lomo = module.exports = {
   // display
@@ -21,5 +22,7 @@ global.lomo = module.exports = {
   Input,
   Label,
   Button,
-  Video
+  Video,
+  // utils
+  createElement
 };
