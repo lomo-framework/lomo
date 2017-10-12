@@ -21,7 +21,8 @@ class DisplayObject extends EventDispatcher {
       'constructor': 1
     },
     numericStyles : {
-      'fontWeight': 1
+      'fontWeight': 1,
+      'zIndex': 1
     }
   };
   static toHexColor(value){
@@ -39,11 +40,13 @@ class DisplayObject extends EventDispatcher {
     }
     return "#" + hexVal.padStart(6, '0');
   }
+
   constructor() {
     super();
 
     this.createElement();
   }
+
   _element;
 
   get element(){
@@ -53,6 +56,23 @@ class DisplayObject extends EventDispatcher {
   set element(value) {
     if (this._element != value) {
       this._element = value;
+    }
+  }
+
+  _positioner;
+
+  get positioner() {
+    return this._positioner;
+  }
+
+  set positioner(value) {
+    if(this._positioner != value) {
+      this._positioner = value;
+
+      if (process.env.NODE_ENV !== 'production') {
+        this.positioner.setAttribute('data-lomo', this.constructor.name || 'DisplayObject');
+      }
+      this.positioner.lomo_wrapper = this;
     }
   }
 
@@ -70,20 +90,6 @@ class DisplayObject extends EventDispatcher {
   set lomo_wrapper(value) {
   }
 
-  createElement(){
-    this.positioner = this.element = document.createElement('div');
-    this.positioner.style.display = 'block';
-    //positioner.style.position = 'relative';
-  }
-
-  _x;
-
-  set x(value)
-  {
-    //this.positioner.style.position = 'absolute';
-    this.positioner.style.left = value.toString() + 'px';
-  }
-
   get x() {
     let strpixels = this.positioner.style.left;
     let pixels = parseFloat(strpixels);
@@ -92,11 +98,9 @@ class DisplayObject extends EventDispatcher {
     return pixels;
   }
 
-  _y;
-
-  set y(value) {
-    //this.positioner.style.position = 'absolute';
-    this.positioner.style.top = value.toString() + 'px';
+  set x(value) {
+    this.positioner.style.position = 'absolute';
+    this.positioner.style.left = value.toString() + 'px';
   }
 
   get y() {
@@ -107,6 +111,64 @@ class DisplayObject extends EventDispatcher {
     return pixels;
   }
 
+  set y(value) {
+    this.positioner.style.position = 'absolute';
+    this.positioner.style.top = value.toString() + 'px';
+  }
+
+  get width() {
+    let pixels;
+    let strpixels = this.positioner.style.width;
+    if (strpixels !== null && strpixels.indexOf('%') != -1)
+      pixels = NaN;
+    else if (strpixels === "")
+      pixels = NaN;
+    else
+      pixels = parseFloat(strpixels);
+    if (isNaN(pixels)) {
+      pixels = this.positioner.offsetWidth;
+      if (pixels === 0 && this.positioner.scrollWidth !== 0) {
+        // invisible child elements cause offsetWidth to be 0.
+        pixels = this.positioner.scrollWidth;
+      }
+    }
+    return pixels;
+  }
+
+  set width(value) {
+    if (this.props.get('width') != value) {
+      this.props.set('width', value);
+      this.positioner.style.width = value.toString() + 'px';
+      this.dispatchEvent("widthChanged");
+    }
+  }
+
+  get height() {
+    let pixels;
+    let strpixels = this.positioner.style.height;
+    if (strpixels !== null && strpixels.indexOf('%') != -1)
+      pixels = NaN;
+    else if (strpixels === "")
+      pixels = NaN;
+    else
+      pixels = parseFloat(strpixels);
+    if (isNaN(pixels)) {
+      pixels = this.positioner.offsetHeight;
+      if (pixels === 0 && this.positioner.scrollHeight !== 0) {
+        // invisible child elements cause offsetHeight to be 0.
+        pixels = this.positioner.scrollHeight;
+      }
+    }
+    return pixels;
+  }
+
+  set height(value) {
+    if (this.props.get('height') != value) {
+      this.props.set('height', value);
+      this.positioner.style.height = value.toString() + 'px';
+      this.dispatchEvent("heightChanged");
+    }
+  }
 
   $displayStyleForLayout;
 
@@ -142,22 +204,6 @@ class DisplayObject extends EventDispatcher {
       this._name = value;
     }
   }
-  getElementByName(name){
-    let children = this.internalChildren();
-    for (let i = 0; i < children.length; i++) {
-      let wrapper = children[i].lomo_wrapper;
-      if(wrapper){
-        if (wrapper.name == name)
-          return wrapper;
-        else{
-          let element = wrapper.getElementByName(name);
-          if(element){
-            return element;
-          }
-        }
-      }
-    }
-  }
 
   get style() {
     return this.positioner.style;
@@ -171,6 +217,10 @@ class DisplayObject extends EventDispatcher {
     if (this.positioner.className != value) {
       this.positioner.className = value;
     }
+  }
+
+  createElement(){
+    this.positioner = this.element = document.createElement('div');
   }
 
   addElement(c) {
@@ -203,6 +253,23 @@ class DisplayObject extends EventDispatcher {
     return -1;
   }
 
+  getElementByName(name){
+    let children = this.internalChildren();
+    for (let i = 0; i < children.length; i++) {
+      let wrapper = children[i].lomo_wrapper;
+      if(wrapper){
+        if (wrapper.name == name)
+          return wrapper;
+        else{
+          let element = wrapper.getElementByName(name);
+          if(element){
+            return element;
+          }
+        }
+      }
+    }
+  }
+
   removeElement(c) {
     this.element.removeChild(c.positioner);
   }
@@ -215,23 +282,6 @@ class DisplayObject extends EventDispatcher {
   get numElements() {
     let children = this.internalChildren();
     return children.length;
-  }
-
-  _positioner;
-
-  get positioner() {
-    return this._positioner;
-  }
-
-  set positioner(value) {
-    if(this._positioner != value) {
-      this._positioner = value;
-
-      if (process.env.NODE_ENV !== 'production') {
-        this.positioner.setAttribute('data-lomo', this.constructor.name || 'DisplayObject');
-      }
-      this.positioner.lomo_wrapper = this;
-    }
   }
 
   get alpha(){

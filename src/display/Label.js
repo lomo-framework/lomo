@@ -8,10 +8,17 @@ class Label extends DisplayObject {
     this.element.innerHTML = value;
     this.dispatchEvent('textChanged');
   }
+  get wordWrap() {
+    return this.props.get('wordWrap');
+  }
+  set wordWrap(value) {
+    this.props.set('wordWrap', value);
 
+    this.element.style.whiteSpace = value?'inherit':"nowrap";
+  }
   createElement() {
     this.positioner = this.element = document.createElement('span');
-    this.element.style.whiteSpace = "nowrap";
+    this.wordWrap = false;
   }
 }
 module.exports = Label;
