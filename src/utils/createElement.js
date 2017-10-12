@@ -15,16 +15,20 @@ export default function (nodeType, Props, ...children) {
     component = new DisplayObject();
     component.positioner = component.element = element;
 
-    for (let name in props) {
-      if(props.hasOwnProperty(name)) {
-        element.setAttribute(name, props[name]);
+    for (let key in props) {
+      if(props.hasOwnProperty(key)) {
+        element.setAttribute(key, props[key]);
       }
+    }
+    // 如果有 name 属性，就指定给 组件，父节点可以通过 getElementByName 查找
+    if(props.hasOwnProperty('name')){
+      component.name = props.name;
     }
   }else{
     component = new nodeType();
-    for (let name in props) {
-      if(props.hasOwnProperty(name)) {
-        Object.assign(component, props[name]);
+    for (let key in props) {
+      if(props.hasOwnProperty(key)) {
+        Object.assign(component, props[key]);
       }
     }
   }
@@ -32,7 +36,7 @@ export default function (nodeType, Props, ...children) {
     component.className = className;
   }
   if(style){
-    Object.assign(component, style);
+    component.setStyle(style);
   }
 
   forEach(children, (child)=>{
