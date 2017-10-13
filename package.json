@@ -1,6 +1,6 @@
 {
   "name": "lomo",
-  "version": "3.1.10",
+  "version": "3.1.11",
   "description": "",
   "main": "dist/lomo.js",
   "scripts": {
