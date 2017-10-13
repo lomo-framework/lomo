@@ -1,7 +1,7 @@
 /**
  * Created by vincent on 17/3/11.
  */
-import DisplayObject from "./display/DisplayObject";
+import Component from "./display/Component";
 import Application from "./display/Application";
 import Canvas from "./display/Canvas";
 import Shape from "./display/Shape";
@@ -14,7 +14,7 @@ import createElement from "./utils/createElement";
 
 global.lomo = module.exports = {
   // display
-  DisplayObject,
+  Component,
   Application,
   Canvas,
   Shape,

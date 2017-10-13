@@ -1,6 +1,6 @@
-import DisplayObject from "./DisplayObject";
+import Component from "./Component";
 
-class Application extends DisplayObject {
+class Application extends Component {
   start(container) {
     container = container || document.getElementsByTagName('body')[0];
     container.appendChild(this.element);
