@@ -171,6 +171,7 @@ class DisplayObject extends EventDispatcher {
 
   addElement(c) {
     this.element.appendChild(c.positioner);
+    return c;
   }
 
   addElementAt(c, index) {
@@ -180,6 +181,7 @@ class DisplayObject extends EventDispatcher {
     else {
       this.element.insertBefore(c.positioner, children[index]);
     }
+    return c;
   }
 
   getElementAt(index) {
@@ -218,20 +220,23 @@ class DisplayObject extends EventDispatcher {
 
   removeElement(c) {
     this.element.removeChild(c.positioner);
+    return c;
   }
 
   removeElementAt(index) {
     let child = this.getElementAt(index);
-    this.removeElement(child);
+    return this.removeElement(child);
   }
   removeChildren(beginIndex=0, endIndex=-1) {
     let children = this.internalChildren();
     if(endIndex == -1 || endIndex > children.length - 1){
       endIndex = children.length - 1;
     }
+    let removedList = [];
     for (let i = endIndex; i >= beginIndex; i--) {
-      this.removeElement(children[i].lomo_wrapper);
+      removedList.push(this.removeElement(children[i].lomo_wrapper));
     }
+    return removedList;
   }
 
   get numElements() {
