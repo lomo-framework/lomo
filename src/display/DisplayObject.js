@@ -224,6 +224,15 @@ class DisplayObject extends EventDispatcher {
     let child = this.getElementAt(index);
     this.removeElement(child);
   }
+  removeChildren(beginIndex=0, endIndex=-1) {
+    let children = this.internalChildren();
+    if(endIndex == -1 || endIndex > children.length - 1){
+      endIndex = children.length - 1;
+    }
+    for (let i = endIndex; i >= beginIndex; i--) {
+      this.removeElement(children[i].lomo_wrapper);
+    }
+  }
 
   get numElements() {
     let children = this.internalChildren();
