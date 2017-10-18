@@ -10,7 +10,7 @@ class Image extends DisplayObject {
     let oldValue = this.element.src;
     if (value != oldValue) {
       this.element.src = value;
-      this.dispatchEvent( new Event("sourceChanged") );
+      this.dispatchEvent("sourceChanged");
     }
   }
 }
