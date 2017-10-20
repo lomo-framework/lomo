@@ -8,6 +8,7 @@
     "clean": "rimraf build",
     "test": "karma start",
     "debug": "cross-env NODE_ENV=development webpack --watch",
+    "prebuild": "babel src --out-dir lib",
     "build": "webpack",
     "eslint": "eslint src/**/*.js --quiet",
     "esdoc": "esdoc"
@@ -15,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.10.4",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^6.2.4",

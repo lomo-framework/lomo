@@ -1,4 +1,4 @@
-import DisplayObject from "./DisplayObject";
+var DisplayObject = require("./DisplayObject");
 
 class Application extends DisplayObject {
   startup(container) {
