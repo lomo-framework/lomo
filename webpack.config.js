@@ -6,7 +6,7 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 var filename = 'lomo';
 function getConf(filename, conf) {
   var baseConf = {
-    entry: './src/index.js',
+    entry: './lomo.js',
     output: {
       path: path.resolve('dist/'),
       filename: filename,
