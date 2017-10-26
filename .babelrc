@@ -1,7 +1,6 @@
 {
   "presets": [
     "es2015",
-    "lomo",
     "stage-0"
   ],
   "plugins": ["transform-decorators-legacy"]

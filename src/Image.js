@@ -1,27 +1,27 @@
 import DisplayObject from "./DisplayObject";
 class Image extends DisplayObject {
   createElement() {
-    this.positioner = this.element = document.createElement('img');
+    this.element = document.createElement('img');
   }
-  
+
   get width() {
-    return this.positioner.width;
+    return this.element.width;
   }
 
   set width(value) {
-    if (this.positioner.width != value) {
-      this.positioner.width = value;
+    if (this.element.width != value) {
+      this.element.width = value;
       this.dispatchEvent("widthChanged");
     }
   }
 
   get height() {
-    return this.positioner.height;
+    return this.element.height;
   }
 
   set height(value) {
-    if (this.positioner.height != value) {
-      this.positioner.height = value;
+    if (this.element.height != value) {
+      this.element.height = value;
       this.dispatchEvent("heightChanged");
     }
   }

@@ -5,8 +5,10 @@ class Label extends DisplayObject {
     return this.element.innerHTML;
   }
   set text(value) {
-    this.element.innerHTML = value;
-    this.dispatchEvent('textChanged');
+    if(this.element.innerHTML != value) {
+      this.element.innerHTML = value;
+      this.dispatchEvent('textChanged');
+    }
   }
   get wordWrap() {
     return this.props.get('wordWrap');
@@ -17,7 +19,7 @@ class Label extends DisplayObject {
     this.element.style.whiteSpace = value?'inherit':"nowrap";
   }
   createElement() {
-    this.positioner = this.element = document.createElement('span');
+    this.element = document.createElement('span');
     this.wordWrap = false;
   }
 }

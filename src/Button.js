@@ -10,7 +10,7 @@ class Button extends DisplayObject {
   }
 
   createElement() {
-    this.positioner = this.element = document.createElement('button');
+    this.element = document.createElement('button');
     this.element.setAttribute('type', 'button');
   }
 }

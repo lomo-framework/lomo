@@ -97,8 +97,9 @@ Object.assign( EventDispatcher.prototype, {
     }
 
     for (var i=0; i<chain.length; ++i){
-      var stopPropagation = chain[i].$invokeEvent(event);
-      if (stopPropagation) break;
+      if (chain[i].$invokeEvent(event)) {
+        break;
+      }
     }
   },
   $invokeEvent(event){
@@ -114,7 +115,7 @@ Object.assign( EventDispatcher.prototype, {
       for ( var i = 0, l = array.length; i < l; i ++ ) {
         array[ i ].call( this, event );
 
-        if (!!event.stopsImmediatePropagation) {
+        if (event.stopsImmediatePropagation) {
           return true;
         }
       }

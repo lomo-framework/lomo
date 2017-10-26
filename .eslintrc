@@ -19,10 +19,6 @@
     },
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "jsx-a11y"
-  ],
   "rules": {
     "no-console":1,
     "no-unused-vars":0,

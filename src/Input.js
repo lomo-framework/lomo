@@ -12,14 +12,8 @@ class Input extends DisplayObject {
   }
 
   createElement() {
-    this.positioner = this.element = document.createElement('input');
+    this.element = document.createElement('input');
     this.element.setAttribute('type', 'text');
-
-    this.textChangeHandler = this.textChangeHandler.bind(this);
-    this.element.addEventListener('input', this.textChangeHandler, false);
-  }
-  textChangeHandler(event){
-    this.dispatchEvent('textChanged');
   }
 }
 module.exports = Input;

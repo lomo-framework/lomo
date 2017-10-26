@@ -33,3 +33,17 @@
   video1.width = 600;
   app.addElement(video1);
 ```
+
+# Event
+```js
+let event = {type:'myEvent', bubbles: true};
+this.dispatchEvent(event);
+
+event.stopsImmediatePropagation = true;
+event.stopsPropagation = true;
+```
+
+# Shape
+```js
+import Shape from "lomo/lib/Shape";
+```

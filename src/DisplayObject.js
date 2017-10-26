@@ -1,6 +1,7 @@
 import EventDispatcher from "./EventDispatcher";
 import HashMap from "hashmap";
 
+const DebugAttributeKey = 'data-lomo';
 class DisplayObject extends EventDispatcher {
   static styleRules = {
     perInstanceStyles : {
@@ -41,38 +42,40 @@ class DisplayObject extends EventDispatcher {
     return "#" + hexVal.padStart(6, '0');
   }
 
-  constructor() {
+  constructor(auto=true) {
     super();
 
-    this.createElement();
+    auto && this.createElement();
+  }
+
+  _innerElement;
+
+  get innerElement(){
+    return this._innerElement || this.element;
+  }
+
+  set innerElement(value) {
+    if (this._innerElement != value) {
+      this._innerElement = value;
+    }
   }
 
   _element;
 
-  get element(){
+  get element() {
     return this._element;
   }
 
   set element(value) {
-    if (this._element != value) {
+    if(this._element != value) {
       this._element = value;
+      this.element.lomo_wrapper = this;
+      this.$debug();
     }
   }
-
-  _positioner;
-
-  get positioner() {
-    return this._positioner;
-  }
-
-  set positioner(value) {
-    if(this._positioner != value) {
-      this._positioner = value;
-
-      if (process.env.NODE_ENV !== 'production') {
-        this.positioner.setAttribute('data-lomo', this.constructor.name || 'DisplayObject');
-      }
-      this.positioner.lomo_wrapper = this;
+  $debug(){
+    if (process.env.NODE_ENV !== 'production') {
+      this.element.setAttribute(DebugAttributeKey, this.name || this.constructor.name || 'DisplayObject');
     }
   }
 
@@ -91,34 +94,34 @@ class DisplayObject extends EventDispatcher {
   }
 
   get x() {
-    let strpixels = this.positioner.style.left;
+    let strpixels = this.element.style.left;
     let pixels = parseFloat(strpixels);
     if (isNaN(pixels))
-      pixels = this.positioner.offsetLeft;
+      pixels = this.element.offsetLeft;
     return pixels;
   }
 
   set x(value) {
-    this.positioner.style.position = 'absolute';
-    this.positioner.style.left = value.toString() + 'px';
+    this.element.style.position = 'absolute';
+    this.element.style.left = value.toString() + 'px';
   }
 
   get y() {
-    let strpixels = this.positioner.style.top;
+    let strpixels = this.element.style.top;
     let pixels = parseFloat(strpixels);
     if (isNaN(pixels))
-      pixels = this.positioner.offsetTop;
+      pixels = this.element.offsetTop;
     return pixels;
   }
 
   set y(value) {
-    this.positioner.style.position = 'absolute';
-    this.positioner.style.top = value.toString() + 'px';
+    this.element.style.position = 'absolute';
+    this.element.style.top = value.toString() + 'px';
   }
 
   get width() {
     let pixels;
-    let strpixels = this.positioner.style.width;
+    let strpixels = this.element.style.width;
     if (strpixels !== null && strpixels.indexOf('%') != -1)
       pixels = NaN;
     else if (strpixels === "")
@@ -126,10 +129,10 @@ class DisplayObject extends EventDispatcher {
     else
       pixels = parseFloat(strpixels);
     if (isNaN(pixels)) {
-      pixels = this.positioner.offsetWidth;
-      if (pixels === 0 && this.positioner.scrollWidth !== 0) {
+      pixels = this.element.offsetWidth;
+      if (pixels === 0 && this.element.scrollWidth !== 0) {
         // invisible child elements cause offsetWidth to be 0.
-        pixels = this.positioner.scrollWidth;
+        pixels = this.element.scrollWidth;
       }
     }
     return pixels;
@@ -138,14 +141,14 @@ class DisplayObject extends EventDispatcher {
   set width(value) {
     if (this.props.get('width') != value) {
       this.props.set('width', value);
-      this.positioner.style.width = value.toString() + 'px';
+      this.element.style.width = value.toString() + 'px';
       this.dispatchEvent("widthChanged");
     }
   }
 
   get height() {
     let pixels;
-    let strpixels = this.positioner.style.height;
+    let strpixels = this.element.style.height;
     if (strpixels !== null && strpixels.indexOf('%') != -1)
       pixels = NaN;
     else if (strpixels === "")
@@ -153,10 +156,10 @@ class DisplayObject extends EventDispatcher {
     else
       pixels = parseFloat(strpixels);
     if (isNaN(pixels)) {
-      pixels = this.positioner.offsetHeight;
-      if (pixels === 0 && this.positioner.scrollHeight !== 0) {
+      pixels = this.element.offsetHeight;
+      if (pixels === 0 && this.element.scrollHeight !== 0) {
         // invisible child elements cause offsetHeight to be 0.
-        pixels = this.positioner.scrollHeight;
+        pixels = this.element.scrollHeight;
       }
     }
     return pixels;
@@ -165,32 +168,32 @@ class DisplayObject extends EventDispatcher {
   set height(value) {
     if (this.props.get('height') != value) {
       this.props.set('height', value);
-      this.positioner.style.height = value.toString() + 'px';
+      this.element.style.height = value.toString() + 'px';
       this.dispatchEvent("heightChanged");
     }
   }
 
-  $displayStyleForLayout;
+  _displayStyleForLayout;
 
   get visible() {
-    return this.positioner.style.display !== 'none';
+    return this.element.style.display !== 'none';
   }
 
   set visible(value) {
-    let oldValue = this.positioner.style.display !== 'none';
+    let oldValue = this.element.style.display !== 'none';
     if (value !== oldValue) {
       if (value) {
-        this.positioner.style.display = this.$displayStyleForLayout;
+        this.element.style.display = this._displayStyleForLayout;
       } else {
-        this.$displayStyleForLayout = this.positioner.style.display;
-        this.positioner.style.display = 'none';
+        this._displayStyleForLayout = this.element.style.display;
+        this.element.style.display = 'none';
       }
       this.dispatchEvent('visibleChanged');
     }
   }
 
   internalChildren() {
-    return this.element.childNodes;
+    return this.innerElement.childNodes;
   }
 
   _name;
@@ -201,30 +204,31 @@ class DisplayObject extends EventDispatcher {
 
   set name(value) {
     if (this._name != value) {
-      this._name = value;
+      this._name = String(value);
+      this.$debug();
     }
   }
 
   get style() {
-    return this.positioner.style;
+    return this.element.style;
   }
 
   get className() {
-    return this.positioner.className;
+    return this.element.className;
   }
 
   set className(value) {
-    if (this.positioner.className != value) {
-      this.positioner.className = value;
+    if (this.element.className != value) {
+      this.element.className = value;
     }
   }
 
   createElement(){
-    this.positioner = this.element = document.createElement('div');
+    this.element = document.createElement('div');
   }
 
   addElement(c) {
-    this.element.appendChild(c.positioner);
+    this.innerElement.appendChild(c.element);
     return c;
   }
 
@@ -233,7 +237,7 @@ class DisplayObject extends EventDispatcher {
     if (index >= children.length)
       this.addElement(c);
     else {
-      this.element.insertBefore(c.positioner, children[index]);
+      this.innerElement.insertBefore(c.element, children[index]);
     }
     return c;
   }
@@ -249,7 +253,7 @@ class DisplayObject extends EventDispatcher {
   getElementIndex(c) {
     let children = this.internalChildren();
     for (let i = 0; i < children.length; i++) {
-      if (children[i] == c.positioner)
+      if (children[i] == c.element)
         return i;
     }
     return -1;
@@ -273,7 +277,7 @@ class DisplayObject extends EventDispatcher {
   }
 
   removeElement(c) {
-    this.element.removeChild(c.positioner);
+    this.innerElement.removeChild(c.element);
     return c;
   }
 
@@ -281,16 +285,16 @@ class DisplayObject extends EventDispatcher {
     let child = this.getElementAt(index);
     return this.removeElement(child);
   }
-  removeChildren(beginIndex=0, endIndex=-1) {
+  removeElements(beginIndex=0, endIndex=-1) {
     let children = this.internalChildren();
     if(endIndex == -1 || endIndex > children.length - 1){
       endIndex = children.length - 1;
     }
-    let removedList = [];
+    let elements = [];
     for (let i = endIndex; i >= beginIndex; i--) {
-      removedList.push(this.removeElement(children[i].lomo_wrapper));
+      elements.push(this.removeElement(children[i].lomo_wrapper));
     }
-    return removedList;
+    return elements;
   }
 
   get numElements() {
@@ -299,21 +303,26 @@ class DisplayObject extends EventDispatcher {
   }
 
   get alpha(){
-    let strAlpha = this.positioner.style.opacity;
+    let strAlpha = this.element.style.opacity;
     return parseFloat(strAlpha);
   }
 
   set alpha(value) {
-    this.positioner.style.opacity = value;
+    this.element.style.opacity = value;
   }
 
   get parent() {
-    let positioner = this.positioner;
-    while(positioner = positioner.parentNode, positioner){
-      if(positioner.lomo_wrapper)
-        return positioner.lomo_wrapper;
+    let element = this.element;
+    while(element = element.parentNode, element){
+      if(element.lomo_wrapper)
+        return element.lomo_wrapper;
     }
   }
+
+  get root() {
+    return this.parent.root;
+  }
+
   $internalSetStyle(name, value) {
     let {skipStyles, colorStyles, numericStyles} = DisplayObject.styleRules;
     if (value === undefined || skipStyles[name])
@@ -329,7 +338,7 @@ class DisplayObject extends EventDispatcher {
       if (name.indexOf('url') !== 0)
         value = 'url(' + value + ')';
     }
-    this.positioner.style[name] = value;
+    this.element.style[name] = value;
   }
   setStyle(nameOrStyles, value){
     if(typeof nameOrStyles == 'string' && value != null){
@@ -342,14 +351,14 @@ class DisplayObject extends EventDispatcher {
       }
     }
   }
-  addDOMListener(type,listener,useCapture){
-    this.positioner.addEventListener(type,listener,useCapture);
+  addDOMEventListener(type,listener,useCapture){
+    this.element.addEventListener(type,listener,useCapture);
   }
-  removeDOMListener(type,listener,useCapture){
-    this.positioner.removeEventListener(type,listener,useCapture);
+  removeDOMEventListener(type,listener,useCapture){
+    this.element.removeEventListener(type,listener,useCapture);
   }
   dispatchDOMEvent(event){
-    this.positioner.dispatchEvent(event);
+    this.element.dispatchEvent(event);
   }
 }
 module.exports = DisplayObject;

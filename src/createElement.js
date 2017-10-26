@@ -57,8 +57,8 @@ module.exports = function createElement(nodeType, Props, ...children) {
   let {style, className, ...props} = Props || {};
   if(typeof nodeType == 'string'){
     element = createDOMNode(nodeType);
-    component = new DisplayObject();
-    component.positioner = component.element = element;
+    component = new DisplayObject(false);
+    component.element = element;
 
     for (let key in props) {
       if(props.hasOwnProperty(key)) {
