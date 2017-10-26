@@ -9,6 +9,7 @@ import Input from "./Input";
 import Label from "./Label";
 import Button from "./Button";
 import Video from "./Video";
+import EventDispatcher from "./EventDispatcher";
 import createElement from "./createElement";
 
 module.exports = global.lomo = {
@@ -21,6 +22,8 @@ module.exports = global.lomo = {
   Label,
   Button,
   Video,
+  // event
+  EventDispatcher,
   // utils
   createElement
 };
