@@ -320,7 +320,8 @@ class DisplayObject extends EventDispatcher {
   }
 
   get root() {
-    return this.parent.root;
+    let parent = this.parent;
+    return parent?parent.root:null;
   }
 
   $internalSetStyle(name, value) {
