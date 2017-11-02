@@ -48,6 +48,7 @@
   video1.autoplay = false;
   video1.loop = true;
   video1.width = 600;
+  video1.setAttribute('height', 600);
   video1.name = 'video1';
   container.addElement(video1);
 
@@ -65,6 +66,14 @@
 
   e1.text = "var v1 = app.getElementByName('video1');"
 
+  var timer = new lomo.Timer(1000, 5);
+  timer.addEventListener(lomo.Timer.TIMER, function () {
+    console.log('timer')
+  });
+  timer.addEventListener(lomo.Timer.TIMER_COMPLETE, function () {
+    console.log('complete')
+  });
+  timer.start(false);
 </script>
 </body>
 </html>

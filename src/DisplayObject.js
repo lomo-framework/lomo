@@ -78,7 +78,16 @@ class DisplayObject extends EventDispatcher {
       this.element.setAttribute(DebugAttributeKey, this.name || this.constructor.name || 'DisplayObject');
     }
   }
-
+  getAttribute(name) {
+    return this.element.getAttribute(name);
+  }
+  setAttribute(name, value) {
+    this.element.setAttribute(name,value);
+  }
+  removeAttribute(name){
+    this.element.removeAttribute(name);
+  }
+  
   _props;
   get props() {
     if(!this._props){

@@ -11,6 +11,7 @@ import Button from "./Button";
 import Video from "./Video";
 import EventDispatcher from "./EventDispatcher";
 import createElement from "./createElement";
+import Timer from "./Timer";
 
 module.exports = global.lomo = {
   // display
@@ -25,5 +26,6 @@ module.exports = global.lomo = {
   // event
   EventDispatcher,
   // utils
-  createElement
+  createElement,
+  Timer
 };
