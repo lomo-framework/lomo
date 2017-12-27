@@ -1,4 +1,4 @@
-# LOMO
+# LOMO ![Build Status](https://travis-ci.org/lomocc/lomo.svg?branch=dev)
 用 OOP 的方式开发 HTML5
 
 ## Install 安装
