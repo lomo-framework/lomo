@@ -36,6 +36,7 @@
     "hashmap": "^2.3.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",
+    "istanbul-instrumenter-loader": "^3.0.0",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
     "karma": "^1.7.0",
