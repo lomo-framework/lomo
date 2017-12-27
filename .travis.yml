@@ -1,0 +1,12 @@
+language: node_js
+cache:
+  yarn: true
+  directories:
+    - node_modules
+#before_install:
+#  - "yarn install"
+install:
+  - yarn install
+  # puppeteer's install script downloads Chrome
+script:
+  - yarn test
