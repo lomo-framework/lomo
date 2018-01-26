@@ -39,15 +39,9 @@ const namespaceURIMap = {
 const defaultNodeType = 'div';
 
 function createDOMNode(type) {
-  let element;
   type = type || defaultNodeType;
-  let namespaceURI = namespaceURIMap[type];
-  if(namespaceURI){
-    element = document.createElementNS(namespaceURI, type);
-  }else{
-    element = document.createElement(type);
-  }
-  return element;
+  const namespaceURI = namespaceURIMap[type];
+  return namespaceURI?document.createElementNS(namespaceURI, type):document.createElement(type);
 }
 
 module.exports = function createElement(nodeType, Props, ...children) {
@@ -57,7 +51,7 @@ module.exports = function createElement(nodeType, Props, ...children) {
   let {style, className, ...props} = Props || {};
   if(typeof nodeType == 'string'){
     element = createDOMNode(nodeType);
-    component = new DisplayObject(false);
+    component = new DisplayObject();
     component.element = element;
 
     for (let key in props) {
@@ -84,15 +78,13 @@ module.exports = function createElement(nodeType, Props, ...children) {
     component.setStyle(style);
   }
 
-  if(children.length > 0){
-    children.forEach((child)=>{
-      if(typeof child == 'string'){
-        var textNode = document.createTextNode(child);
-        element.appendChild(textNode);
-      }else if(child instanceof DisplayObject){
-        component.addElement(child);
-      }
-    });
-  }
+  children.forEach((child)=>{
+    if(typeof child == 'string'){
+      var textNode = document.createTextNode(child);
+      element.appendChild(textNode);
+    }else if(child instanceof DisplayObject){
+      component.addElement(child);
+    }
+  });
   return component;
 };

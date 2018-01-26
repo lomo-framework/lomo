@@ -1,10 +1,10 @@
 var DisplayObject = require("./DisplayObject");
 
-class Application extends DisplayObject {
+class Stage extends DisplayObject {
   get parent() {
     return this;
   }
-  get root() {
+  get stage() {
     return this;
   }
   startup(container) {
@@ -13,5 +13,12 @@ class Application extends DisplayObject {
 
     this.dispatchEvent('startup');
   }
+  shutdown() {
+    let parentNode = this.element.parentNode;
+    if(parentNode){
+      parentNode.removeChild(this.element);
+      this.dispatchEvent('shutdown');
+    }
+  }
 }
-module.exports = Application;
+module.exports = Stage;

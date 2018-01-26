@@ -2,7 +2,7 @@
  * Created by vincent on 17/3/11.
  */
 import DisplayObject from "./DisplayObject";
-import Application from "./Application";
+import Stage from "./Stage";
 import Canvas from "./Canvas";
 import Image from "./Image";
 import Input from "./Input";
@@ -16,7 +16,7 @@ import Timer from "./Timer";
 module.exports = global.lomo = {
   // display
   DisplayObject,
-  Application,
+  Stage,
   Canvas,
   Image,
   Input,

@@ -92,8 +92,8 @@ Object.assign( EventDispatcher.prototype, {
     let element = this;
     let chain = [element];
 
-    let root = element.root;
-    while (element != root && (element = element.parent) != null) {
+    let stage = element.stage;
+    while (element != stage && (element = element.parent) != null) {
       chain.push(element);
     }
 

@@ -6,6 +6,6 @@ describe("createElement", ()=>{
     expect(createElement('div', {}, "Hello World").element.childNodes.length).toEqual(1);
   });
   it("innerText", ()=>{
-    expect(createElement('div', {}, "Hello World").element.innerText).toEqual("Hello World");
+    expect(createElement('div', {}, "Hello World").element.innerHTML).toEqual("Hello World");
   });
 });

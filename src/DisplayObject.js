@@ -42,14 +42,18 @@ class DisplayObject extends EventDispatcher {
     return "#" + hexVal.padStart(6, '0');
   }
 
-  constructor(auto=true) {
+  constructor() {
     super();
 
-    auto && this.createElement();
+    this.createElement();
   }
 
   _innerElement;
 
+  /**
+   * 用于存放子元素的容器
+   * @returns {*}
+   */
   get innerElement(){
     return this._innerElement || this.element;
   }
@@ -63,6 +67,9 @@ class DisplayObject extends EventDispatcher {
   _element;
 
   get element() {
+    if(!this._element){
+      this._element = document.createElement('div');
+    }
     return this._element;
   }
 
@@ -87,7 +94,7 @@ class DisplayObject extends EventDispatcher {
   removeAttribute(name){
     this.element.removeAttribute(name);
   }
-  
+
   _props;
   get props() {
     if(!this._props){
@@ -232,8 +239,11 @@ class DisplayObject extends EventDispatcher {
     }
   }
 
+  /**
+   * 创建自身组件
+   */
   createElement(){
-    this.element = document.createElement('div');
+
   }
 
   addElement(c) {
@@ -328,9 +338,9 @@ class DisplayObject extends EventDispatcher {
     }
   }
 
-  get root() {
+  get stage() {
     let parent = this.parent;
-    return parent?parent.root:null;
+    return parent?parent.stage:null;
   }
 
   $internalSetStyle(name, value) {
