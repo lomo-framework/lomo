@@ -1,6 +1,9 @@
 node_modules/
 doc/
 src/
+coverage/
+jest/
+__tests__/
 .idea/
 .babelrc
 .editorconfig
@@ -10,4 +13,5 @@ server.js
 webpack.config.js
 webpack.dist.config.js
 yarn.lock
-
+.jest.config.js
+.travis.yml

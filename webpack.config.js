@@ -12,6 +12,7 @@ function getConf(filename, conf) {
       filename: filename,
       libraryTarget: 'umd'
     },
+    externals:["hashmap"],
     module: {
       loaders: [{
         test: /\.js$/,
