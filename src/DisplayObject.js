@@ -1,7 +1,6 @@
 import EventDispatcher from "./EventDispatcher";
 import HashMap from "hashmap";
 
-const DebugAttributeKey = 'data-lomo';
 class DisplayObject extends EventDispatcher {
   static styleRules = {
     perInstanceStyles : {
@@ -67,22 +66,19 @@ class DisplayObject extends EventDispatcher {
   _element;
 
   get element() {
-    if(!this._element){
-      this._element = document.createElement('div');
-    }
     return this._element;
   }
 
   set element(value) {
     if(this._element != value) {
       this._element = value;
-      this.element.lomo_wrapper = this;
-      this.$debug();
+      this.element.__lomo_wrapper = this;
+      this.__debug();
     }
   }
-  $debug(){
+  __debug(){
     if (process.env.NODE_ENV !== 'production') {
-      this.element.setAttribute(DebugAttributeKey, this.name || this.constructor.name || 'DisplayObject');
+      this.element.setAttribute('data-lomo', this.name || this.constructor.name || 'DisplayObject');
     }
   }
   getAttribute(name) {
@@ -103,11 +99,11 @@ class DisplayObject extends EventDispatcher {
     return this._props;
   }
 
-  get lomo_wrapper() {
-    return this;
-  }
-  set lomo_wrapper(value) {
-  }
+  // get __lomo_wrapper() {
+  //   return this;
+  // }
+  // set __lomo_wrapper(value) {
+  // }
 
   get x() {
     let strpixels = this.element.style.left;
@@ -221,7 +217,7 @@ class DisplayObject extends EventDispatcher {
   set name(value) {
     if (this._name != value) {
       this._name = String(value);
-      this.$debug();
+      this.__debug();
     }
   }
 
@@ -243,7 +239,7 @@ class DisplayObject extends EventDispatcher {
    * 创建自身组件
    */
   createElement(){
-
+    this.element = document.createElement('div');
   }
 
   addElement(c) {
@@ -266,7 +262,7 @@ class DisplayObject extends EventDispatcher {
     if (children.length == 0) {
       return null;
     }
-    return children[index].lomo_wrapper;
+    return children[index].__lomo_wrapper;
   }
 
   getElementIndex(c) {
@@ -281,7 +277,7 @@ class DisplayObject extends EventDispatcher {
   getElementByName(name){
     let children = this.internalChildren();
     for (let i = 0; i < children.length; i++) {
-      let wrapper = children[i].lomo_wrapper;
+      let wrapper = children[i].__lomo_wrapper;
       if(wrapper){
         if (wrapper.name == name)
           return wrapper;
@@ -311,7 +307,7 @@ class DisplayObject extends EventDispatcher {
     }
     let elements = [];
     for (let i = endIndex; i >= beginIndex; i--) {
-      elements.push(this.removeElement(children[i].lomo_wrapper));
+      elements.push(this.removeElement(children[i].__lomo_wrapper));
     }
     return elements;
   }
@@ -333,8 +329,8 @@ class DisplayObject extends EventDispatcher {
   get parent() {
     let element = this.element;
     while(element = element.parentNode, element){
-      if(element.lomo_wrapper)
-        return element.lomo_wrapper;
+      if(element.__lomo_wrapper)
+        return element.__lomo_wrapper;
     }
   }
 

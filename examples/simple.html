@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <title>test</title>
   <script type="text/javascript" src="../dist/lomo.js"></script>
+  <script type="text/javascript" src="../node_modules/hashmap/hashmap.js"></script>
 </head>
 <body>
 <script>
-  process = {env: {NODE_ENV: "production"}};
+//  process = {env: {NODE_ENV: "production"}};
+  console.log(HashMap)
 //  process.env.NODE_ENV = "production"
-  var app = new lomo.Application();
+  var app = new lomo.Stage();
   app.startup();
 
   var img1 = new lomo.Image();
