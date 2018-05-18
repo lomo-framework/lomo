@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <title>test</title>
   <script type="text/javascript" src="../dist/lomo.js"></script>
-  <script type="text/javascript" src="../node_modules/hashmap/hashmap.js"></script>
 </head>
 <body>
 <script>
 //  process = {env: {NODE_ENV: "production"}};
-  console.log(HashMap)
 //  process.env.NODE_ENV = "production"
   var app = new lomo.Stage();
   app.startup();
@@ -26,8 +24,6 @@
   input1.setStyle({fontSize: '30px', color: 'red'});
   input1.text = "但是，";
   input1.name = 'input1';
-  input1.props.set('value', '______________________423er32');
-  console.log(input1.props.get('value'));
   container.addElement(input1);
 
   input1.addEventListener('textChanged', function (event) {
@@ -69,8 +65,9 @@
   e1.text = "var v1 = app.getElementByName('video1');"
 
   var timer = new lomo.Timer(1000, 5);
-  timer.addEventListener(lomo.Timer.TIMER, function () {
+  timer.addEventListener(lomo.Timer.TIMER, function (event) {
     console.log('timer')
+    input1.text = event.target.currentCount;
   });
   timer.addEventListener(lomo.Timer.TIMER_COMPLETE, function () {
     console.log('complete')

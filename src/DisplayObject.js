@@ -90,15 +90,6 @@ class DisplayObject extends EventDispatcher {
   removeAttribute(name){
     this.element.removeAttribute(name);
   }
-
-  _props;
-  get props() {
-    if(!this._props){
-      this._props = new HashMap();
-    }
-    return this._props;
-  }
-
   // get __lomo_wrapper() {
   //   return this;
   // }
@@ -149,11 +140,11 @@ class DisplayObject extends EventDispatcher {
     }
     return pixels;
   }
-
+  _width;
   set width(value) {
-    if (this.props.get('width') != value) {
-      this.props.set('width', value);
-      this.element.style.width = value.toString() + 'px';
+    if (this._width !== value) {
+      this._width = value;
+      this.element.style.width = this._width.toString() + 'px';;
       this.dispatchEvent("widthChanged");
     }
   }
@@ -177,10 +168,11 @@ class DisplayObject extends EventDispatcher {
     return pixels;
   }
 
+  _height;
   set height(value) {
-    if (this.props.get('height') != value) {
-      this.props.set('height', value);
-      this.element.style.height = value.toString() + 'px';
+    if (this._height !== value) {
+      this._height = value;
+      this.element.style.height = this._height.toString() + 'px';
       this.dispatchEvent("heightChanged");
     }
   }

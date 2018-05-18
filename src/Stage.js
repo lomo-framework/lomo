@@ -8,10 +8,11 @@ class Stage extends DisplayObject {
     return this;
   }
   startup(container) {
-    container = container || document.getElementsByTagName('body')[0];
-    container.appendChild(this.element);
-
-    this.dispatchEvent('startup');
+    let parentNode = container || document.body;
+    if(this.element.parentNode != parentNode){
+      parentNode.appendChild(this.element);
+      this.dispatchEvent('startup');
+    }
   }
   shutdown() {
     let parentNode = this.element.parentNode;

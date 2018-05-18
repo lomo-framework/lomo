@@ -1,10 +1,11 @@
 /**
  * @author mrdoob / http://mrdoob.com/
  */
+import assign from "object-assign";
 
 function EventDispatcher() {}
 
-Object.assign( EventDispatcher.prototype, {
+assign( EventDispatcher.prototype, {
 
   addEventListener: function ( type, listener ) {
 

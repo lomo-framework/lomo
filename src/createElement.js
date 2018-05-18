@@ -1,6 +1,7 @@
 /**
  * Created by vincent on 17/3/11.
  */
+import assign from "object-assign";
 import DisplayObject from "./DisplayObject";
 
 /**
@@ -65,11 +66,7 @@ module.exports = function createElement(nodeType, Props, ...children) {
     }
   }else{
     component = new nodeType();
-    for (let key in props) {
-      if(props.hasOwnProperty(key)) {
-        Object.assign(component, props[key]);
-      }
-    }
+    assign(component, props);
   }
   if(className){
     component.className = className;
