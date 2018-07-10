@@ -1,6 +1,6 @@
-var DisplayObject = require("./DisplayObject");
+var Element = require("./Element");
 
-class Stage extends DisplayObject {
+class Stage extends Element {
   get parent() {
     return this;
   }
