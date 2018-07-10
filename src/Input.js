@@ -7,7 +7,6 @@ class Input extends DisplayObject {
   set text(value) {
     if(this.element.value != value) {
       this.element.value = value;
-      this.dispatchEvent('textChanged');
     }
   }
 

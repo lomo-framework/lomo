@@ -3,6 +3,7 @@
  */
 import assign from "object-assign";
 import DisplayObject from "./DisplayObject";
+import Text from "./Text";
 
 /**
  * Created by vincent on 17/3/11.
@@ -40,7 +41,6 @@ const namespaceURIMap = {
 const defaultNodeType = 'div';
 
 function createDOMNode(type) {
-  type = type || defaultNodeType;
   const namespaceURI = namespaceURIMap[type];
   return namespaceURI?document.createElementNS(namespaceURI, type):document.createElement(type);
 }
@@ -51,7 +51,7 @@ module.exports = function createElement(nodeType, Props, ...children) {
 
   let {style, className, ...props} = Props || {};
   if(typeof nodeType == 'string'){
-    element = createDOMNode(nodeType);
+    element = createDOMNode(nodeType || defaultNodeType);
     component = new DisplayObject();
     component.element = element;
 
@@ -77,8 +77,11 @@ module.exports = function createElement(nodeType, Props, ...children) {
 
   children.forEach((child)=>{
     if(typeof child == 'string'){
-      var textNode = document.createTextNode(child);
-      element.appendChild(textNode);
+      // let textNode = document.createTextNode(child);
+      // component.element.appendChild(textNode);
+      let textElement = new Text();
+      textElement.text = child;
+      component.addElement(textElement);
     }else if(child instanceof DisplayObject){
       component.addElement(child);
     }

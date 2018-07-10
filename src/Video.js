@@ -8,7 +8,6 @@ class Video extends DisplayObject {
   set width(value) {
     if (this.element.width != value) {
       this.element.width = value;
-      this.dispatchEvent("widthChanged");
     }
   }
 
@@ -19,7 +18,6 @@ class Video extends DisplayObject {
   set height(value) {
     if (this.element.height != value) {
       this.element.height = value;
-      this.dispatchEvent("heightChanged");
     }
   }
   
@@ -29,7 +27,6 @@ class Video extends DisplayObject {
   set source(value) {
     if (this.element.src != value) {
       this.element.src = value;
-      this.dispatchEvent('sourceChanged');
     }
   }
   get autoplay() {
@@ -37,28 +34,24 @@ class Video extends DisplayObject {
   }
   set autoplay(value) {
     this.element.autoplay = value;
-    this.dispatchEvent('autoplayChanged');
   }
   get controls() {
     return this.element.controls;
   }
   set controls(value) {
     this.element.controls = value;
-    this.dispatchEvent('controlsChanged');
   }
   get loop() {
     return this.element.loop;
   }
   set loop(value) {
     this.element.loop = value;
-    this.dispatchEvent('loopChanged');
   }
   get preload() {
     return this.element.preload;
   }
   set preload(value) {
     this.element.preload = value;
-    this.dispatchEvent('preloadChanged');
   }
   get paused() {
     return this.element.paused;
@@ -70,7 +63,6 @@ class Video extends DisplayObject {
       }else{
         this.element.play();
       }
-      this.dispatchEvent('pausedChanged');
     }
   }
 

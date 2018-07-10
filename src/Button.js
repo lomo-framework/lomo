@@ -7,7 +7,6 @@ class Button extends DisplayObject {
   set text(value) {
     if(this.element.innerText !== value) {
       this.element.innerText == value;
-      this.dispatchEvent('textChanged');
     }
   }
 

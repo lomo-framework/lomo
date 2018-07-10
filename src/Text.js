@@ -1,13 +1,12 @@
 import DisplayObject from "./DisplayObject";
 
-class Label extends DisplayObject {
+class Text extends DisplayObject {
   get text() {
     return this.element.innerText;
   }
   set text(value) {
     if(this.element.innerText !== value) {
       this.element.innerText == value;
-      this.dispatchEvent('textChanged');
     }
   }
   get htmlText() {
@@ -16,7 +15,6 @@ class Label extends DisplayObject {
   set htmlText(value) {
     if(this.element.innerHTML !== value) {
       this.element.textContent = value;
-      this.dispatchEvent('htmlTextChanged');
     }
   }
   get wordWrap() {
@@ -33,4 +31,4 @@ class Label extends DisplayObject {
     this.wordWrap = false;
   }
 }
-module.exports = Label;
+module.exports = Text;

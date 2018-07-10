@@ -15,7 +15,6 @@ class Canvas extends DisplayObject {
   set width(value) {
     if (this.element.width !== value) {
       this.element.width = value;
-      this.dispatchEvent("widthChanged");
     }
   }
 
@@ -26,7 +25,6 @@ class Canvas extends DisplayObject {
   set height(value) {
     if (this.element.height !== value) {
       this.element.height = value;
-      this.dispatchEvent("heightChanged");
     }
   }
 }

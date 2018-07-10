@@ -6,7 +6,7 @@ import Stage from "./Stage";
 import Canvas from "./Canvas";
 import Image from "./Image";
 import Input from "./Input";
-import Label from "./Label";
+import Text from "./Text";
 import Button from "./Button";
 import Video from "./Video";
 import EventDispatcher from "./EventDispatcher";
@@ -20,7 +20,7 @@ module.exports = global.lomo = {
   Canvas,
   Image,
   Input,
-  Label,
+  Text,
   Button,
   Video,
   // event

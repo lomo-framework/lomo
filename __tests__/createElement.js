@@ -1,11 +1,11 @@
+import createElement from '../lib/createElement.js';
+import Button from '../lib/Button';
 
-import createElement from 'createElement.js';
-describe("createElement", ()=>{
-  it("childNodes.length", ()=>{
-    console.log(createElement('div', {}, "Hello World"));
-    expect(createElement('div', {}, "Hello World").element.childNodes.length).toEqual(1);
-  });
-  it("innerText", ()=>{
-    expect(createElement('div', {}, "Hello World").element.innerHTML).toEqual("Hello World");
-  });
+test('createElement', () => {
+  const tree = createElement('div', {}, "createElement").element.outerHTML;
+  expect(tree).toMatchSnapshot();
+});
+test('Button', () => {
+  const tree = createElement(Button, {text: "Button"}).element.outerHTML;
+  expect(tree).toMatchSnapshot();
 });

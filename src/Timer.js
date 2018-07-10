@@ -19,7 +19,7 @@ class Timer extends EventDispatcher {
   immediatelyRunFirst;
 
   running() {
-    return this.timerInterval != -1;
+    return this._timerIntervalId != -1;
   }
 
   _currentCount = 0;
@@ -28,7 +28,7 @@ class Timer extends EventDispatcher {
     return this._currentCount;
   }
 
-  timerInterval = -1;
+  _timerIntervalId = -1;
 
   reset() {
     this.stop();
@@ -36,13 +36,12 @@ class Timer extends EventDispatcher {
   }
 
   stop() {
-    clearInterval(this.timerInterval);
-    this.timerInterval = -1;
+    clearInterval(this._timerIntervalId);
+    this._timerIntervalId = -1;
   }
 
   start() {
-    this.timerInterval =
-      setInterval(()=>this.$timerHandler(), this.delay);
+    this._timerIntervalId = setInterval(()=>this.$timerHandler(), this.delay);
     if(this.immediatelyRunFirst){
       this.$timerHandler();
     }
@@ -51,12 +50,12 @@ class Timer extends EventDispatcher {
   $timerHandler() {
     this._currentCount++;
     let completed = this.repeatCount > 0 && this.currentCount == this.repeatCount;
-    if (this.repeatCount > 0 && this.currentCount >= this.repeatCount) {
-      this.stop();
-    }
     this.dispatchEvent(Timer.TIMER);
     if(completed){
       this.dispatchEvent(Timer.TIMER_COMPLETE);
+    }
+    if (this.repeatCount > 0 && this.currentCount >= this.repeatCount) {
+      this.stop();
     }
   }
 }
