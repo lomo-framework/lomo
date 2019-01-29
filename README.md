@@ -32,7 +32,7 @@
 ```
 
 ```js
-var app = new lomo.Application();
+var app = new lomo.Stage();
 app.startup();
 
 var img1 = new lomo.Image();

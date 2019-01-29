@@ -1,7 +1,7 @@
 /**
  * canvas 元素
  */
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
 
 class Canvas extends DisplayObject {
   createElement() {
@@ -13,9 +13,8 @@ class Canvas extends DisplayObject {
   }
 
   set width(value) {
-    if (this.element.width != value) {
+    if (this.element.width !== value) {
       this.element.width = value;
-      this.dispatchEvent("widthChanged");
     }
   }
 
@@ -24,9 +23,8 @@ class Canvas extends DisplayObject {
   }
 
   set height(value) {
-    if (this.element.height != value) {
+    if (this.element.height !== value) {
       this.element.height = value;
-      this.dispatchEvent("heightChanged");
     }
   }
 }

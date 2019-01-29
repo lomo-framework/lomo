@@ -1,8 +1,9 @@
 {
   "name": "lomo",
-  "version": "3.4.0",
+  "version": "4.1.1",
   "description": "",
   "main": "lomo.js",
+  "typings": "typings.d.ts",
   "scripts": {
     "start": "node server",
     "clean": "rimraf build",
@@ -32,14 +33,17 @@
     "eslint": "^3.3.0",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",
-    "hashmap": "^2.3.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",
-    "jest": "^22.0.4",
+    "jest": "^23.3.0",
     "rimraf": "^2.5.4",
     "webpack": "^2.5.1",
-    "webpack-bundle-analyzer": "^2.8.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.13.2"
+  },
+  "dependencies": {
+    "hashmap": "^2.3.0",
+    "object-assign": "^4.1.1"
   }
 }

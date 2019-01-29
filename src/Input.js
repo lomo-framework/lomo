@@ -1,13 +1,12 @@
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
 
 class Input extends DisplayObject {
   get text() {
     return this.element.value;
   }
   set text(value) {
-    if(this.element.value != value) {
+    if (this.element.value != value) {
       this.element.value = value;
-      this.dispatchEvent('textChanged');
     }
   }
 

@@ -1,4 +1,5 @@
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
+
 class Image extends DisplayObject {
   createElement() {
     this.element = document.createElement('img');
@@ -9,9 +10,8 @@ class Image extends DisplayObject {
   }
 
   set width(value) {
-    if (this.element.width != value) {
+    if (this.element.width !== value) {
       this.element.width = value;
-      this.dispatchEvent("widthChanged");
     }
   }
 
@@ -20,9 +20,8 @@ class Image extends DisplayObject {
   }
 
   set height(value) {
-    if (this.element.height != value) {
+    if (this.element.height !== value) {
       this.element.height = value;
-      this.dispatchEvent("heightChanged");
     }
   }
 
@@ -30,10 +29,8 @@ class Image extends DisplayObject {
     return this.element.src;
   }
   set source(value) {
-    let oldValue = this.element.src;
-    if (value != oldValue) {
+    if (this.element.src !== value) {
       this.element.src = value;
-      this.dispatchEvent("sourceChanged");
     }
   }
 }

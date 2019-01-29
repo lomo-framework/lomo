@@ -1,12 +1,13 @@
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
 
 class Button extends DisplayObject {
   get text() {
-    return this.element.innerHTML;
+    return this.element.innerText;
   }
   set text(value) {
-    this.element.innerHTML = value;
-    this.dispatchEvent('textChanged');
+    if (this.element.innerText !== value) {
+      this.element.innerText = value;
+    }
   }
 
   createElement() {

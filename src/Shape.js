@@ -1,7 +1,7 @@
 /**
  * Canvas 之 2d 画板
  */
-import Canvas from "./Canvas";
+import Canvas from './Canvas';
 
 class Shape extends Canvas {
   _context;
@@ -12,15 +12,14 @@ class Shape extends Canvas {
     this._context = this.element.getContext('2d');
   }
 
-  get context(){
+  get context() {
     return this._context;
   }
-  
+
   clear(color) {
-    if(color == null) {
+    if (color == null) {
       this._context.clearRect(0, 0, this.width, this.height);
-    }
-    else {
+    } else {
       this._context.save();
       this._context.fillStyle = color;
       this._context.fillRect(0, 0, this.width, this.height);
@@ -29,26 +28,54 @@ class Shape extends Canvas {
   }
 
   setFill(r, g, b, a) {
-    if(typeof r === 'string') {
+    if (typeof r === 'string') {
       this._context.fillStyle = r;
-    }
-    else if(a == null) {
-      this._context.fillStyle = 'rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
-    }
-    else {
-      this._context.fillStyle = 'rgba(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ', ' + a + ')';
+    } else if (a == null) {
+      this._context.fillStyle =
+        'rgb(' +
+        Math.round(r) +
+        ',' +
+        Math.round(g) +
+        ',' +
+        Math.round(b) +
+        ')';
+    } else {
+      this._context.fillStyle =
+        'rgba(' +
+        Math.round(r) +
+        ',' +
+        Math.round(g) +
+        ',' +
+        Math.round(b) +
+        ', ' +
+        a +
+        ')';
     }
   }
 
   setStroke(r, g, b, a) {
-    if(typeof r === 'string') {
+    if (typeof r === 'string') {
       this._context.strokeStyle = r;
-    }
-    else if(a == null) {
-      this._context.strokeStyle = 'rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
-    }
-    else {
-      this._context.strokeStyle = 'rgba(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ', ' + a + ')';
+    } else if (a == null) {
+      this._context.strokeStyle =
+        'rgb(' +
+        Math.round(r) +
+        ',' +
+        Math.round(g) +
+        ',' +
+        Math.round(b) +
+        ')';
+    } else {
+      this._context.strokeStyle =
+        'rgba(' +
+        Math.round(r) +
+        ',' +
+        Math.round(g) +
+        ',' +
+        Math.round(b) +
+        ', ' +
+        a +
+        ')';
     }
   }
 
@@ -125,7 +152,6 @@ class Shape extends Canvas {
     this._context.arcTo(x, y + h, x, y + h - r, r);
     this._context.lineTo(x, y + r);
     this._context.arcTo(x, y, x + r, y, r);
-
   }
 
   fillRoundRect(x, y, w, h, r) {
@@ -198,8 +224,8 @@ class Shape extends Canvas {
     this._context.translate(x, y);
     this._context.rotate(rotation || 0);
     this._context.moveTo(r, 0);
-    for(var i = 1; i < sides; i++) {
-      var angle = Math.PI * 2 / sides * i;
+    for (var i = 1; i < sides; i++) {
+      var angle = ((Math.PI * 2) / sides) * i;
       this._context.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
     }
     this._context.lineTo(r, 0);
@@ -223,18 +249,16 @@ class Shape extends Canvas {
     this._context.translate(x, y);
     this._context.rotate(rotation || 0);
     this._context.moveTo(r2, 0);
-    for(var i = 1; i < points * 2; i++) {
-      var angle = Math.PI / points  * i;
-      if(i % 2) {
+    for (var i = 1; i < points * 2; i++) {
+      var angle = (Math.PI / points) * i;
+      if (i % 2) {
         this._context.lineTo(Math.cos(angle) * r1, Math.sin(angle) * r1);
-      }
-      else {
+      } else {
         this._context.lineTo(Math.cos(angle) * r2, Math.sin(angle) * r2);
       }
     }
     this._context.lineTo(r2, 0);
     this._context.restore();
-
   }
 
   fillStar(x, y, r1, r2, points, rotation) {
@@ -250,15 +274,14 @@ class Shape extends Canvas {
   }
 
   path(points, closed) {
-    if(points.length <= 0) return;
+    if (points.length <= 0) return;
     this._context.moveTo(points[0].x, points[0].y);
-    for(var i = 1; i < points.length; i++) {
+    for (var i = 1; i < points.length; i++) {
       this._context.lineTo(points[i].x, points[i].y);
     }
-    if(closed) {
+    if (closed) {
       this._context.lineTo(points[0].x, points[0].y);
     }
-
   }
 
   fillPath(points, closed) {
@@ -275,14 +298,14 @@ class Shape extends Canvas {
 
   splat(x, y, numNodes, radius, innerRadius, curve, variation, rotation) {
     var points = [],
-      slice = Math.PI * 2 / (numNodes * 2),
+      slice = (Math.PI * 2) / (numNodes * 2),
       angle = 0,
       radiusRange = radius - innerRadius,
       r;
-    curve = curve || 0	;
+    curve = curve || 0;
     variation = variation || 0;
 
-    for(var i = 0; i < numNodes; i++) {
+    for (var i = 0; i < numNodes; i++) {
       r = radius + variation * (Math.random() * radiusRange * 2 - radiusRange);
       points.push(makePoint(angle - slice * (1 + curve), innerRadius));
       points.push(makePoint(angle + slice * curve, innerRadius));
@@ -319,7 +342,7 @@ class Shape extends Canvas {
 
   multiCurve(points) {
     var mids = [];
-    for(var i = 0; i < points.length - 1; i++) {
+    for (var i = 0; i < points.length - 1; i++) {
       mids.push({
         x: (points[i].x + points[i + 1].x) / 2,
         y: (points[i].y + points[i + 1].y) / 2
@@ -327,11 +350,20 @@ class Shape extends Canvas {
     }
 
     this._context.moveTo(points[0].x, points[0].y);
-    for(i = 1; i < points.length - 2; i++) {
-      this._context.quadraticCurveTo(points[i].x, points[i].y, mids[i].x, mids[i].y);
+    for (i = 1; i < points.length - 2; i++) {
+      this._context.quadraticCurveTo(
+        points[i].x,
+        points[i].y,
+        mids[i].x,
+        mids[i].y
+      );
     }
-    this._context.quadraticCurveTo(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
-
+    this._context.quadraticCurveTo(
+      points[i].x,
+      points[i].y,
+      points[i + 1].x,
+      points[i + 1].y
+    );
   }
 
   fillMultiCurve(points) {
@@ -348,7 +380,7 @@ class Shape extends Canvas {
 
   multiCurveLoop(points) {
     var mids = [];
-    for(var i = 0; i < points.length - 1; i++) {
+    for (var i = 0; i < points.length - 1; i++) {
       mids.push({
         x: (points[i].x + points[i + 1].x) / 2,
         y: (points[i].y + points[i + 1].y) / 2
@@ -360,11 +392,20 @@ class Shape extends Canvas {
     });
 
     this._context.moveTo(mids[0].x, mids[0].y);
-    for(i = 1; i < points.length; i++) {
-      this._context.quadraticCurveTo(points[i].x, points[i].y, mids[i].x, mids[i].y);
+    for (i = 1; i < points.length; i++) {
+      this._context.quadraticCurveTo(
+        points[i].x,
+        points[i].y,
+        mids[i].x,
+        mids[i].y
+      );
     }
-    this._context.quadraticCurveTo(points[0].x, points[0].y, mids[0].x, mids[0].y);
-
+    this._context.quadraticCurveTo(
+      points[0].x,
+      points[0].y,
+      mids[0].x,
+      mids[0].y
+    );
   }
 
   fillMultiCurveLoop(points) {
@@ -382,18 +423,24 @@ class Shape extends Canvas {
   fractalLine(x1, y1, x2, y2, offset, roughness, iterations) {
     roughness = roughness || 0.5;
     iterations = iterations || 5;
-    if(offset == null) {
+    if (offset == null) {
       var dx = x2 - x1,
         dy = y2 - y1;
-      offset = Math.sqrt(dx * dx + dy * dy) * .15;
+      offset = Math.sqrt(dx * dx + dy * dy) * 0.15;
     }
 
-    var path = [{x: x1, y: y1}, {x: x2, y: y2}];
-    for(var i = 0; i < iterations; i++) {
-      for(var j = path.length - 1; j > 0; j--) {
+    var path = [{ x: x1, y: y1 }, { x: x2, y: y2 }];
+    for (var i = 0; i < iterations; i++) {
+      for (var j = path.length - 1; j > 0; j--) {
         path.splice(j, 0, {
-          x: (path[j].x + path[j - 1].x) / 2 + Math.random() * offset * 2 - offset,
-          y: (path[j].y + path[j - 1].y) / 2 + Math.random() * offset * 2 - offset
+          x:
+            (path[j].x + path[j - 1].x) / 2 +
+            Math.random() * offset * 2 -
+            offset,
+          y:
+            (path[j].y + path[j - 1].y) / 2 +
+            Math.random() * offset * 2 -
+            offset
         });
       }
       offset *= roughness;
@@ -411,14 +458,16 @@ class Shape extends Canvas {
     this._context.save();
     this._context.translate(x, y);
     this._context.rotate(r);
-    var points = [{ x: 0,          y: h *  0.5   },
-      { x: 0,          y: h *  0.375 },
+    var points = [
+      { x: 0, y: h * 0.5 },
+      { x: 0, y: h * 0.375 },
       { x: w * -0.625, y: h * -0.125 },
-      { x: w * -0.25,  y: h * -0.625 },
-      { x: 0,          y: h * -0.375 }];
+      { x: w * -0.25, y: h * -0.625 },
+      { x: 0, y: h * -0.375 }
+    ];
 
     this.multiCurve(points);
-    for(var i = 0; i < points.length; i++) {
+    for (var i = 0; i < points.length; i++) {
       points[i].x *= -1;
     }
     this.multiCurve(points);
@@ -439,11 +488,11 @@ class Shape extends Canvas {
 
   grid(x, y, w, h, xres, yres) {
     yres = yres || xres;
-    for(var i = x; i <= x + w; i += xres) {
+    for (var i = x; i <= x + w; i += xres) {
       this._context.moveTo(i, y);
       this._context.lineTo(i, y + h);
     }
-    for(i = y; i <= y + h; i += yres) {
+    for (i = y; i <= y + h; i += yres) {
       this._context.moveTo(x, i);
       this._context.lineTo(x + w, i);
     }

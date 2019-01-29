@@ -7,9 +7,9 @@
 </head>
 <body>
 <script>
-  process = {env: {NODE_ENV: "production"}};
+//  process = {env: {NODE_ENV: "production"}};
 //  process.env.NODE_ENV = "production"
-  var app = new lomo.Application();
+  var app = new lomo.Stage();
   app.startup();
 
   var img1 = new lomo.Image();
@@ -24,15 +24,13 @@
   input1.setStyle({fontSize: '30px', color: 'red'});
   input1.text = "但是，";
   input1.name = 'input1';
-  input1.props.set('value', '______________________423er32');
-  console.log(input1.props.get('value'));
   container.addElement(input1);
 
   input1.addEventListener('textChanged', function (event) {
     console.log('input', event.target.text);
   });
 
-  var label1 = new lomo.Label();
+  var label1 = new lomo.Text();
   label1.style = {fontSize: '30px', color: 'red'};
   label1.className = 'tf1_test';
   label1.text = "但是，我们只保护我们的代码不受在其之后执行的代码的干扰，并不能防御先于我们代码执行的代码。";
@@ -67,8 +65,9 @@
   e1.text = "var v1 = app.getElementByName('video1');"
 
   var timer = new lomo.Timer(1000, 5);
-  timer.addEventListener(lomo.Timer.TIMER, function () {
+  timer.addEventListener(lomo.Timer.TIMER, function (event) {
     console.log('timer')
+    input1.text = event.target.currentCount;
   });
   timer.addEventListener(lomo.Timer.TIMER_COMPLETE, function () {
     console.log('complete')

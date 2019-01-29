@@ -3,7 +3,7 @@ class Timer extends EventDispatcher {
   static TIMER = 'timer';
   static TIMER_COMPLETE = 'timerComplete';
 
-  constructor(delay, repeatCount = -1, immediatelyRunFirst=false) {
+  constructor(delay, repeatCount = -1, immediatelyRunFirst = false) {
     super();
 
     this.delay = delay;
@@ -18,8 +18,8 @@ class Timer extends EventDispatcher {
    */
   immediatelyRunFirst;
 
-  running() {
-    return this.timerInterval != -1;
+  get running() {
+    return this._timerIntervalId != -1;
   }
 
   _currentCount = 0;
@@ -28,7 +28,7 @@ class Timer extends EventDispatcher {
     return this._currentCount;
   }
 
-  timerInterval = -1;
+  _timerIntervalId = -1;
 
   reset() {
     this.stop();
@@ -36,27 +36,27 @@ class Timer extends EventDispatcher {
   }
 
   stop() {
-    clearInterval(this.timerInterval);
-    this.timerInterval = -1;
+    clearInterval(this._timerIntervalId);
+    this._timerIntervalId = -1;
   }
 
   start() {
-    this.timerInterval =
-      setInterval(()=>this.$timerHandler(), this.delay);
-    if(this.immediatelyRunFirst){
+    this._timerIntervalId = setInterval(() => this.$timerHandler(), this.delay);
+    if (this.immediatelyRunFirst) {
       this.$timerHandler();
     }
   }
 
   $timerHandler() {
     this._currentCount++;
-    let completed = this.repeatCount > 0 && this.currentCount == this.repeatCount;
+    let completed =
+      this.repeatCount > 0 && this.currentCount == this.repeatCount;
+    this.dispatchEvent(Timer.TIMER);
+    if (completed) {
+      this.dispatchEvent(Timer.TIMER_COMPLETE);
+    }
     if (this.repeatCount > 0 && this.currentCount >= this.repeatCount) {
       this.stop();
-    }
-    this.dispatchEvent(Timer.TIMER);
-    if(completed){
-      this.dispatchEvent(Timer.TIMER_COMPLETE);
     }
   }
 }
