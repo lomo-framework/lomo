@@ -2,21 +2,24 @@ import EventDispatcher from './EventDispatcher';
 
 class DisplayObject extends EventDispatcher {
   static styleRules = {
-    colorStyles : {
-      'backgroundColor': 1,
-      'borderColor': 1,
-      'color': 1
+    colorStyles: {
+      backgroundColor: 1,
+      borderColor: 1,
+      color: 1
     },
-    numericStyles : {
-      'fontWeight': 1,
-      'zIndex': 1
+    numericStyles: {
+      fontWeight: 1,
+      zIndex: 1
     }
   };
 
   constructor() {
     super();
-
-    this.createElement();
+  }
+  _props;
+  get props() {
+    this._props = this._props || new Map();
+    return this._props;
   }
 
   _contentElement;
@@ -25,7 +28,7 @@ class DisplayObject extends EventDispatcher {
    * 用于存放子元素的容器
    * @returns {*}
    */
-  get contentElement(){
+  get contentElement() {
     return this._contentElement || this.element;
   }
 
@@ -38,16 +41,22 @@ class DisplayObject extends EventDispatcher {
   _element;
 
   get element() {
+    if (!this._element) {
+      this.createElement();
+    }
     return this._element;
   }
 
   set element(value) {
-    if(this._element != value) {
+    if (this._element != value) {
       this._element = value;
       this.element.__lomo_wrapper = this;
 
       if (process.env.NODE_ENV !== 'production') {
-        this.element.setAttribute('data-lomo', this.name || this.constructor.name || 'DisplayObject');
+        this.element.setAttribute(
+          'data-lomo',
+          this.name || this.constructor.name || 'DisplayObject'
+        );
       }
     }
   }
@@ -55,9 +64,9 @@ class DisplayObject extends EventDispatcher {
     return this.element.getAttribute(name);
   }
   setAttribute(name, value) {
-    this.element.setAttribute(name,value);
+    this.element.setAttribute(name, value);
   }
-  removeAttribute(name){
+  removeAttribute(name) {
     this.element.removeAttribute(name);
   }
   // get __lomo_wrapper() {
@@ -69,8 +78,7 @@ class DisplayObject extends EventDispatcher {
   get x() {
     let strpixels = this.element.style.left;
     let pixels = parseFloat(strpixels);
-    if (isNaN(pixels))
-      pixels = this.element.offsetLeft;
+    if (isNaN(pixels)) pixels = this.element.offsetLeft;
     return pixels;
   }
 
@@ -82,8 +90,7 @@ class DisplayObject extends EventDispatcher {
   get y() {
     let strpixels = this.element.style.top;
     let pixels = parseFloat(strpixels);
-    if (isNaN(pixels))
-      pixels = this.element.offsetTop;
+    if (isNaN(pixels)) pixels = this.element.offsetTop;
     return pixels;
   }
 
@@ -95,12 +102,9 @@ class DisplayObject extends EventDispatcher {
   get width() {
     let pixels;
     let strpixels = this.element.style.width;
-    if (strpixels !== null && strpixels.indexOf('%') != -1)
-      pixels = NaN;
-    else if (strpixels === "")
-      pixels = NaN;
-    else
-      pixels = parseFloat(strpixels);
+    if (strpixels !== null && strpixels.indexOf('%') != -1) pixels = NaN;
+    else if (strpixels === '') pixels = NaN;
+    else pixels = parseFloat(strpixels);
     if (isNaN(pixels)) {
       pixels = this.element.offsetWidth;
       if (pixels === 0 && this.element.scrollWidth !== 0) {
@@ -121,12 +125,9 @@ class DisplayObject extends EventDispatcher {
   get height() {
     let pixels;
     let strpixels = this.element.style.height;
-    if (strpixels !== null && strpixels.indexOf('%') != -1)
-      pixels = NaN;
-    else if (strpixels === "")
-      pixels = NaN;
-    else
-      pixels = parseFloat(strpixels);
+    if (strpixels !== null && strpixels.indexOf('%') != -1) pixels = NaN;
+    else if (strpixels === '') pixels = NaN;
+    else pixels = parseFloat(strpixels);
     if (isNaN(pixels)) {
       pixels = this.element.offsetHeight;
       if (pixels === 0 && this.element.scrollHeight !== 0) {
@@ -190,8 +191,7 @@ class DisplayObject extends EventDispatcher {
   /**
    * 创建自身组件
    */
-  createElement(){
-  }
+  createElement() {}
 
   addElement(child) {
     this.contentElement.appendChild(child.element);
@@ -200,8 +200,7 @@ class DisplayObject extends EventDispatcher {
 
   addElementAt(child, index) {
     const children = this.internalChildren();
-    if (index >= children.length)
-      return this.addElement(child);
+    if (index >= children.length) return this.addElement(child);
     else {
       this.contentElement.insertBefore(child.element, children[index]);
       return child;
@@ -219,22 +218,20 @@ class DisplayObject extends EventDispatcher {
   getElementIndex(child) {
     const children = this.internalChildren();
     for (let i = 0; i < children.length; i++) {
-      if (children[i] == child.element)
-        return i;
+      if (children[i] == child.element) return i;
     }
     return -1;
   }
 
-  getElementByName(name){
+  getElementByName(name) {
     const children = this.internalChildren();
     for (let i = 0; i < children.length; i++) {
       let wrapper = children[i].__lomo_wrapper;
-      if(wrapper){
-        if (wrapper.name == name)
-          return wrapper;
-        else{
+      if (wrapper) {
+        if (wrapper.name == name) return wrapper;
+        else {
           let element = wrapper.getElementByName(name);
-          if(element){
+          if (element) {
             return element;
           }
         }
@@ -250,9 +247,9 @@ class DisplayObject extends EventDispatcher {
   removeElementAt(index) {
     return this.removeElement(this.getElementAt(index));
   }
-  removeElements(beginIndex=0, endIndex=-1) {
+  removeElements(beginIndex = 0, endIndex = -1) {
     const children = this.internalChildren();
-    if(endIndex == -1 || endIndex > children.length - 1){
+    if (endIndex == -1 || endIndex > children.length - 1) {
       endIndex = children.length - 1;
     }
     let elements = [];
@@ -266,9 +263,9 @@ class DisplayObject extends EventDispatcher {
     return this.internalChildren().length;
   }
 
-  get alpha(){
+  get alpha() {
     const opacity = this.element.style.opacity;
-    if(opacity == ''){
+    if (opacity == '') {
       return 1;
     }
     return parseFloat(opacity);
@@ -280,26 +277,25 @@ class DisplayObject extends EventDispatcher {
 
   get parent() {
     let element = this.element;
-    while(element = element.parentNode, element){
-      if(element.__lomo_wrapper)
-        return element.__lomo_wrapper;
+    while (((element = element.parentNode), element)) {
+      if (element.__lomo_wrapper) return element.__lomo_wrapper;
     }
   }
 
   get stage() {
     const parent = this.parent;
-    return parent?parent.stage:null;
+    return parent ? parent.stage : null;
   }
 
   $internalSetStyle(name, value) {
-    let {colorStyles, numericStyles} = DisplayObject.styleRules;
-    if (value === undefined)
-      return;
-    if (typeof(value) == 'number') {
+    let { colorStyles, numericStyles } = DisplayObject.styleRules;
+    if (value === undefined) return;
+    if (typeof value == 'number') {
       if (colorStyles[name]) {
-        if(value > 0xffffff) {
-          value = `rgba(${value >> 16 & 0xff},${value >> 8 & 0xff},${value >> 0 & 0xff},${(value >> 24 & 0xff)/255})`;
-        }else{
+        if (value > 0xffffff) {
+          value = `rgba(${(value >> 16) & 0xff},${(value >> 8) &
+            0xff},${(value >> 0) & 0xff},${((value >> 24) & 0xff) / 255})`;
+        } else {
           value = `#${value.toString(16).padStart(6, '0')}`;
         }
       } else if (!numericStyles[name]) {
@@ -308,36 +304,36 @@ class DisplayObject extends EventDispatcher {
     }
     this.element.style[name] = value;
   }
-  setStyle(nameOrStyles, value){
-    if(typeof nameOrStyles == 'string'){
+  setStyle(nameOrStyles, value) {
+    if (typeof nameOrStyles == 'string') {
       this.$internalSetStyle(nameOrStyles, value);
-    }else if(typeof nameOrStyles == 'object'){
+    } else if (typeof nameOrStyles == 'object') {
       for (let name in nameOrStyles) {
-        if(nameOrStyles.hasOwnProperty(name)){
+        if (nameOrStyles.hasOwnProperty(name)) {
           this.$internalSetStyle(name, nameOrStyles[name]);
         }
       }
     }
   }
-  on(type, listener){
+  on(type, listener) {
     this.addEventListener(type, listener);
   }
-  once(type, listener){
-    this.addEventListener(type, (event)=>{
+  once(type, listener) {
+    this.addEventListener(type, event => {
       this.removeEventListener(type, listener);
       listener.call(this, event);
     });
   }
-  off(type, listener){
+  off(type, listener) {
     this.removeEventListener(type, listener);
   }
-  addDOMEventListener(type,listener,useCapture){
-    this.element.addEventListener(type,listener,useCapture);
+  addDOMEventListener(type, listener, useCapture) {
+    this.element.addEventListener(type, listener, useCapture);
   }
-  removeDOMEventListener(type,listener,useCapture){
-    this.element.removeEventListener(type,listener,useCapture);
+  removeDOMEventListener(type, listener, useCapture) {
+    this.element.removeEventListener(type, listener, useCapture);
   }
-  dispatchDOMEvent(event){
+  dispatchDOMEvent(event) {
     this.element.dispatchEvent(event);
   }
 }

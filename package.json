@@ -3,6 +3,7 @@
   "version": "4.1.1",
   "description": "",
   "main": "lomo.js",
+  "typings": "typings.d.ts",
   "scripts": {
     "start": "node server",
     "clean": "rimraf build",
@@ -37,7 +38,7 @@
     "jest": "^23.3.0",
     "rimraf": "^2.5.4",
     "webpack": "^2.5.1",
-    "webpack-bundle-analyzer": "^2.8.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.13.2"
   },

@@ -1,4 +1,5 @@
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
+
 class Image extends DisplayObject {
   createElement() {
     this.element = document.createElement('img');

@@ -1,4 +1,4 @@
-var Element = require("./Element");
+var Element = require('./Element');
 
 class Stage extends Element {
   get parent() {
@@ -9,13 +9,13 @@ class Stage extends Element {
   }
   startup(container) {
     let parentNode = container || document.body;
-    if(this.element.parentNode != parentNode){
+    if (this.element.parentNode != parentNode) {
       parentNode.appendChild(this.element);
     }
   }
   shutdown() {
     let parentNode = this.element.parentNode;
-    if(parentNode){
+    if (parentNode) {
       parentNode.removeChild(this.element);
     }
   }

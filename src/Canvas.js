@@ -1,7 +1,7 @@
 /**
  * canvas 元素
  */
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
 
 class Canvas extends DisplayObject {
   createElement() {

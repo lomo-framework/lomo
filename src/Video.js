@@ -1,4 +1,4 @@
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
 
 class Video extends DisplayObject {
   get width() {
@@ -20,7 +20,7 @@ class Video extends DisplayObject {
       this.element.height = value;
     }
   }
-  
+
   get source() {
     return this.element.src;
   }
@@ -58,9 +58,9 @@ class Video extends DisplayObject {
   }
   set paused(value) {
     if (this.element.paused != value) {
-      if(value){
+      if (value) {
         this.element.pause();
-      }else{
+      } else {
         this.element.play();
       }
     }

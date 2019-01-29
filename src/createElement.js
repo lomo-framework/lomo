@@ -1,9 +1,9 @@
 /**
  * Created by vincent on 17/3/11.
  */
-import assign from "object-assign";
-import DisplayObject from "./DisplayObject";
-import Text from "./Text";
+import assign from 'object-assign';
+import DisplayObject from './DisplayObject';
+import Text from './Text';
 
 /**
  * Created by vincent on 17/3/11.
@@ -42,47 +42,49 @@ const defaultNodeType = 'div';
 
 function createDOMNode(type) {
   const namespaceURI = namespaceURIMap[type];
-  return namespaceURI?document.createElementNS(namespaceURI, type):document.createElement(type);
+  return namespaceURI
+    ? document.createElementNS(namespaceURI, type)
+    : document.createElement(type);
 }
 
 module.exports = function createElement(nodeType, Props, ...children) {
   let element;
   let component;
 
-  let {style, className, ...props} = Props || {};
-  if(typeof nodeType == 'string'){
+  let { style, className, ...props } = Props || {};
+  if (typeof nodeType == 'string') {
     element = createDOMNode(nodeType || defaultNodeType);
     component = new DisplayObject();
     component.element = element;
 
     for (let key in props) {
-      if(props.hasOwnProperty(key)) {
+      if (props.hasOwnProperty(key)) {
         element.setAttribute(key, props[key]);
       }
     }
     // 如果有 name 属性，就指定给 组件，父节点可以通过 getElementByName 查找
-    if(props.hasOwnProperty('name')){
+    if (props.hasOwnProperty('name')) {
       component.name = props.name;
     }
-  }else{
+  } else {
     component = new nodeType();
     assign(component, props);
   }
-  if(className){
+  if (className) {
     component.className = className;
   }
-  if(style){
+  if (style) {
     component.setStyle(style);
   }
 
-  children.forEach((child)=>{
-    if(typeof child == 'string'){
+  children.forEach(child => {
+    if (typeof child == 'string') {
       // let textNode = document.createTextNode(child);
       // component.element.appendChild(textNode);
       let textElement = new Text();
       textElement.text = child;
       component.addElement(textElement);
-    }else if(child instanceof DisplayObject){
+    } else if (child instanceof DisplayObject) {
       component.addElement(child);
     }
   });

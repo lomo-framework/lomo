@@ -1,4 +1,4 @@
-import DisplayObject from "./DisplayObject";
+import DisplayObject from './DisplayObject';
 
 class Element extends DisplayObject {
   createElement() {
